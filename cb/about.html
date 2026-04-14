@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Musafir International</title>
+    <meta name="description" content="Learn about Musafir International, Bangladesh's leading tile and construction materials manufacturer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-banner {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=400&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-banner h1 {
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        .about-content-section {
+            padding: 80px 0;
+        }
+        .about-content-section .container {
+            max-width: 900px;
+        }
+        .about-content-section h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        .about-content-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .page-banner h1 { font-size: 32px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-top-inner">
+                    <button class="mobile-menu-btn" aria-label="Open Menu" onclick="toggleMobileMenu()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h18M3 6h18M3 18h18"/>
+                        </svg>
+                    </button>
+                    <div class="search-box">
+                        <input type="search" placeholder="What are you looking for?">
+                        <button type="submit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="index.html" class="logo">
+                        <img src="https://via.placeholder.com/177x70?text=Logo" alt="Musafir International">
+                    </a>
+                    <div class="header-icons">
+                        <div class="language-selector">
+                            <button onclick="toggleLanguageDropdown()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                </svg>
+                                <span>Language</span>
+                            </button>
+                            <div class="dropdown-menu" id="languageDropdown">
+                                <a href="#">English</a>
+                                <a href="#">বাংলা</a>
+                            </div>
+                        </div>
+                        <a href="#" class="account-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Sign In</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Bathroom Tiles</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Bathroom Tiles</h4>
+                                            <ul>
+                                                <li><a href="#">Wall Tiles</a></li>
+                                                <li><a href="#">Floor Tiles</a></li>
+                                                <li><a href="#">Mosaic Tiles</a></li>
+                                                <li><a href="#">Subway Tiles</a></li>
+                                                <li><a href="#">Large Format</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-menu-col">
+                                            <h4>Popular Sizes</h4>
+                                            <ul>
+                                                <li><a href="#">30x60cm</a></li>
+                                                <li><a href="#">30x30cm</a></li>
+                                                <li><a href="#">25x50cm</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-menu-col">
+                                            <h4>Finish</h4>
+                                            <ul>
+                                                <li><a href="#">Glossy</a></li>
+                                                <li><a href="#">Matt</a></li>
+                                                <li><a href="#">Rustic</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images">
+                                        <a href="#" class="menu-image-block">
+                                            <div class="image-wrap">
+                                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=400&fit=crop" alt="Bathroom">
+                                            </div>
+                                            <div class="image-content">
+                                                <span class="title">Modern Bathroom</span>
+                                                <span class="arrow">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                                </span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="menu-image-block">
+                                            <div class="image-wrap">
+                                                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&h=400&fit=crop" alt="Bathroom">
+                                            </div>
+                                            <div class="image-content">
+                                                <span class="title">Classic White</span>
+                                                <span class="arrow">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                                </span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="menu-image-block">
+                                            <div class="image-wrap">
+                                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=400&fit=crop" alt="Bathroom">
+                                            </div>
+                                            <div class="image-content">
+                                                <span class="title">Premium Collection</span>
+                                                <span class="arrow">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Kitchen Tiles</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Kitchen Tiles</h4>
+                                            <ul>
+                                                <li><a href="#">Backsplash</a></li>
+                                                <li><a href="#">Floor Tiles</a></li>
+                                                <li><a href="#">Wall Tiles</a></li>
+                                                <li><a href="#">Metro Tiles</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-menu-col">
+                                            <h4>Style</h4>
+                                            <ul>
+                                                <li><a href="#">Modern</a></li>
+                                                <li><a href="#">Classic</a></li>
+                                                <li><a href="#">Rustic</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images">
+                                        <a href="#" class="menu-image-block">
+                                            <div class="image-wrap">
+                                                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" alt="Kitchen">
+                                            </div>
+                                            <div class="image-content">
+                                                <span class="title">Kitchen Backsplash</span>
+                                                <span class="arrow">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Wall Tiles</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Wall Tiles</h4>
+                                            <ul>
+                                                <li><a href="#">Ceramic Tiles</a></li>
+                                                <li><a href="#">Porcelain Tiles</a></li>
+                                                <li><a href="#">Glass Tiles</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-menu-col">
+                                            <h4>Finish</h4>
+                                            <ul>
+                                                <li><a href="#">Glossy</a></li>
+                                                <li><a href="#">Matt</a></li>
+                                                <li><a href="#">Satin</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Floor Tiles</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Floor Tiles</h4>
+                                            <ul>
+                                                <li><a href="#">Porcelain</a></li>
+                                                <li><a href="#">Ceramic</a></li>
+                                                <li><a href="#">Vinyl</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-menu-col">
+                                            <h4>Size</h4>
+                                            <ul>
+                                                <li><a href="#">60x60cm</a></li>
+                                                <li><a href="#">45x45cm</a></li>
+                                                <li><a href="#">30x30cm</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Outdoor Tiles</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Outdoor Tiles</h4>
+                                            <ul>
+                                                <li><a href="#">Patio Tiles</a></li>
+                                                <li><a href="#">Pool Tiles</a></li>
+                                                <li><a href="#">Driveway Tiles</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Wood Effects</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Wood Effects</h4>
+                                            <ul>
+                                                <li><a href="#">Plank Tiles</a></li>
+                                                <li><a href="#">Herringbone</a></li>
+                                                <li><a href="#">Chevron</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="mega-menu-col">
+                                            <h4>Color</h4>
+                                            <ul>
+                                                <li><a href="#">Oak</a></li>
+                                                <li><a href="#">Walnut</a></li>
+                                                <li><a href="#">Grey</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Construction Materials</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-container">
+                                <div class="mega-menu-row">
+                                    <div class="mega-menu-links">
+                                        <div class="mega-menu-col">
+                                            <h4>Construction Materials</h4>
+                                            <ul>
+                                                <li><a href="#">Parking Tiles</a></li>
+                                                <li><a href="#">Hollow Block</a></li>
+                                                <li><a href="#">Solid Bricks</a></li>
+                                                <li><a href="#">Pavers</a></li>
+                                                <li><a href="#">Kerb Stone</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mega-menu-images">
+                                        <a href="#" class="menu-image-block">
+                                            <div class="image-wrap">
+                                                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=400&fit=crop" alt="Construction">
+                                            </div>
+                                            <div class="image-content">
+                                                <span class="title">Parking Tiles</span>
+                                                <span class="arrow">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-banner">
+        <h1>About Us</h1>
+    </section>
+
+    <section class="about-content-section">
+        <div class="container">
+            <h2>Tiles for every home</h2>
+            <p>As a family company with decades of tile experience, we believe great design doesn't need to cost the earth. And with over 800 wall and floor tiles to choose from, it's no wonder more than 500,000 customers trust us for their homes.</p>
+            <p>Musafir International is Bangladesh's premier manufacturer of premium tiles, parking tiles, hollow blocks, solid bricks, pavers & construction materials. We provide durable, stylish solutions for residential & commercial projects.</p>
+            <p>Our commitment to quality has made us a trusted name in the construction industry. We continuously innovate to bring you the best products at competitive prices.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Quality Products</h3>
+                    <p>We ensure every product meets the highest quality standards</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Expert Team</h3>
+                    <p>Our experienced team provides professional guidance</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Customer First</h3>
+                    <p>We prioritize customer satisfaction in everything we do</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <p><strong>Phone:</strong> 0330 094 0304</p>
+                        <p><strong>Email:</strong> info@example.com</p>
+                        <p>Saturday to Thursday - 09:00am to 5.00pm</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Help & FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy and Cookies</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">Parking Tiles</a></li>
+                        <li><a href="#">Hollow Block</a></li>
+                        <li><a href="#">Solid Bricks</a></li>
+                        <li><a href="#">Plank Tiles</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy & Cookies</a>
+                </div>
+                <p>&copy; 2025 Musafir International, All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/**
+ * City Builders - Main JavaScript
+ * Pure HTML/CSS/JS Template
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu();
+    initSearchBox();
+    initProductHover();
+    initSmoothScroll();
+});
+
+/**
+ * Mobile Menu Toggle
+ */
+function initMobileMenu() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('.main-nav');
+    
+    // Make function global for inline onclick
+    window.toggleMobileMenu = function() {
+        if (nav) {
+            nav.classList.toggle('active');
+        }
+    };
+    
+    if (menuBtn && nav) {
+        menuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    }
+}
+
+/**
+ * Language Dropdown Toggle
+ */
+function initLanguageDropdown() {
+    window.toggleLanguageDropdown = function() {
+        const dropdown = document.getElementById('languageDropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('show');
+        }
+    };
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const selector = document.querySelector('.language-selector');
+        const dropdown = document.getElementById('languageDropdown');
+        if (selector && dropdown && !selector.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+}
+
+/**
+ * Search Box Focus Effect
+ */
+function initSearchBox() {
+    const searchInput = document.querySelector('.search-box input');
+    
+    if (searchInput) {
+        searchInput.addEventListener('focus', function() {
+            this.closest('.search-box').style.borderColor = '#f9d175';
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            this.closest('.search-box').style.borderColor = '#e3e8eb';
+        });
+    }
+}
+
+/**
+ * Product Card Hover Effects
+ */
+function initProductHover() {
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+/**
+ * Smooth Scroll for Anchor Links
+ */
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+}
+
+/**
+ * Header Scroll Effect
+ */
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 100) {
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+        } else {
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.08)';
+        }
+    }
+});
+
+/**
+ * Lazy Load Images (Native)
+ */
+if ('loading' in HTMLImageElement.prototype) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(img => {
+        img.src = img.dataset.src;
+    });
+}
+
+/**
+ * Newsletter Form (if needed)
+ */
+function initNewsletterForm() {
+    const form = document.querySelector('.newsletter-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thank you for subscribing!');
+                this.reset();
+            }
+        });
+    }
+}
