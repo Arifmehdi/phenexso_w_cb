@@ -64,9 +64,15 @@ class FrontendController extends Controller
     {
         return view('website.test.shop');
     }
+    
     public function test_shop_detail()
     {
         return view('website.test.shop_detail');
+    }
+
+    public function test_checkout()
+    {
+        return view('website.test.checkout');
     }
 
 

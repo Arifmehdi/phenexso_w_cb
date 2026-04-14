@@ -1,0 +1,786 @@
+@extends('website.test.test_include.test_app')
+
+@section('title', 'Test Header')
+@section('meta_description', 'This is a test header page for Musafir International.')
+@section('meta_keywords', 'test header, Musafir International, tile manufacturer')
+@section('content')
+    <style>
+        .product-detail-page {
+            padding: 40px 0;
+        }
+        
+        .product-detail-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .product-detail-breadcrumb a {
+            color: #212a2f;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .product-detail-breadcrumb a:hover {
+            color: #e8362a;
+        }
+        
+        .product-detail-breadcrumb span {
+            color: #999;
+        }
+        
+        .product-detail-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .product-gallery {
+            position: relative;
+        }
+        
+        .main-image {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f8f9fa;
+            margin-bottom: 15px;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-badges {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .product-badges .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge.sale {
+            background: #27ae60;
+            color: #fff;
+        }
+        
+        .badge.new {
+            background: #e8362a;
+            color: #fff;
+        }
+        
+        .badge.out-of-stock {
+            background: #666;
+            color: #fff;
+        }
+        
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .thumbnail {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #e8362a;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info-section {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .product-category {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #212a2f;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .product-price {
+            margin-bottom: 25px;
+        }
+        
+        .current-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #212a2f;
+        }
+        
+        .original-price {
+            font-size: 18px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 12px;
+        }
+        
+        .price-per-sqm {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .product-stock {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #e8f5e9;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #27ae60;
+            margin-bottom: 25px;
+        }
+        
+        .product-stock.out-of-stock {
+            background: #ffebee;
+            color: #e8362a;
+        }
+        
+        .stock-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        
+        .product-description {
+            margin-bottom: 30px;
+        }
+        
+        .product-description h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #212a2f;
+            margin-bottom: 15px;
+        }
+        
+        .product-description p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #212a2f;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .color-option:hover,
+        .color-option.active {
+            border-color: #212a2f;
+        }
+        
+        .color-option.selected::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 2px solid #e8362a;
+            border-radius: 50%;
+        }
+        
+        .size-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .size-option {
+            padding: 10px 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .size-option:hover,
+        .size-option.active {
+            border-color: #e8362a;
+            background: #e8362a;
+            color: #fff;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .quantity-selector label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #212a2f;
+        }
+        
+        .quantity-input {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #f8f9fa;
+            color: #212a2f;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: #e8362a;
+            color: #fff;
+        }
+        
+        .quantity-value {
+            width: 60px;
+            height: 40px;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #212a2f;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .btn-add-to-cart {
+            flex: 1;
+            padding: 16px 30px;
+            background: #212a2f;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-add-to-cart:hover {
+            background: #e8362a;
+        }
+        
+        .btn-buy-now {
+            flex: 1;
+            padding: 16px 30px;
+            background: #f9d175;
+            color: #212a2f;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-buy-now:hover {
+            background: #212a2f;
+            color: #fff;
+        }
+        
+        .product-meta {
+            border-top: 1px solid #e5e5e5;
+            padding-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .meta-label {
+            color: #888;
+            min-width: 100px;
+        }
+        
+        .meta-value {
+            color: #212a2f;
+        }
+        
+        .product-tabs {
+            margin-top: 60px;
+        }
+        
+        .tabs-nav {
+            display: flex;
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 30px;
+        }
+        
+        .tab-btn {
+            padding: 15px 30px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            color: #e8362a;
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e8362a;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #212a2f;
+            margin-bottom: 15px;
+        }
+        
+        .tab-content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .related-products {
+            margin-top: 80px;
+        }
+        
+        .related-products h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #212a2f;
+            margin-bottom: 30px;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .related-card {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .related-image {
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        
+        .related-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .related-card:hover .related-image img {
+            transform: scale(1.08);
+        }
+        
+        .related-info {
+            padding: 20px;
+        }
+        
+        .related-category {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .related-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #212a2f;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .related-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #212a2f;
+        }
+        
+        @media (max-width: 991px) {
+            .product-detail-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .product-info-section {
+                position: static;
+            }
+            
+            .product-title {
+                font-size: 26px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .product-title {
+                font-size: 22px;
+            }
+            
+            .current-price {
+                font-size: 24px;
+            }
+            
+            .thumbnail-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .tabs-nav {
+                overflow-x: auto;
+            }
+            
+            .tab-btn {
+                padding: 12px 20px;
+                white-space: nowrap;
+            }
+            
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .related-info {
+                padding: 12px;
+            }
+            
+            .related-title {
+                font-size: 14px;
+            }
+            
+            .related-price {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+        <!-- Product Detail Page -->
+    <main class="product-detail-page">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="product-detail-breadcrumb">
+                <a href="index.html">Home</a>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+                <a href="shop.html">Shop</a>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+                <span>Pantheon Ivory Tile</span>
+            </div>
+            
+            <div class="product-detail-wrapper">
+                <!-- Product Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=800&fit=crop" alt="Pantheon Ivory Tile" id="mainImage">
+                        <div class="product-badges">
+                            <span class="badge sale">Sale</span>
+                        </div>
+                    </div>
+                    <div class="thumbnail-grid">
+                        <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=800&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&h=200&fit=crop" alt="Thumbnail 1">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3b5?w=800&h=800&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3b5?w=200&h=200&fit=crop" alt="Thumbnail 2">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=800&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop" alt="Thumbnail 3">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=800&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=200&h=200&fit=crop" alt="Thumbnail 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Info -->
+                <div class="product-info-section">
+                    <p class="product-category">Bathroom Tiles</p>
+                    <h1 class="product-title">Pantheon Ivory Tile</h1>
+                    
+                    <div class="product-price">
+                        <span class="current-price">£42.50</span>
+                        <span class="original-price">£50.00</span>
+                        <p class="price-per-sqm">£42.50 per m²</p>
+                    </div>
+                    
+                    <div class="product-stock">
+                        <span class="stock-dot"></span>
+                        In Stock
+                    </div>
+                    
+                    <div class="product-description">
+                        <h3>Description</h3>
+                        <p>Bring elegance to your bathroom with the Pantheon Ivory Tile. Featuring a beautiful ivory finish with subtle marble veining, this premium ceramic tile is perfect for creating a luxurious spa-like atmosphere. The large format design (32 x 62.5 cm) creates a seamless, sophisticated look that enhances any space.</p>
+                        <p>Made from high-quality ceramic, these tiles are durable, water-resistant, and easy to maintain - ideal for both residential and commercial applications.</p>
+                    </div>
+                    
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label class="option-label">Color</label>
+                            <div class="color-options">
+                                <div class="color-option active" style="background: #f5f5dc;" title="Ivory"></div>
+                                <div class="color-option" style="background: #d4c4a8;" title="Beige"></div>
+                                <div class="color-option" style="background: #b8b8b8;" title="Gray"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label class="option-label">Size</label>
+                            <div class="size-options">
+                                <button class="size-option">32 x 62.5 cm</button>
+                                <button class="size-option">30 x 60 cm</button>
+                                <button class="size-option">25 x 50 cm</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label>Quantity:</label>
+                        <div class="quantity-input">
+                            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                            <input type="number" class="quantity-value" value="1" min="1" id="quantityInput">
+                            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-add-to-cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                            Add to Cart
+                        </button>
+                        <button class="btn-buy-now">Buy Now</button>
+                    </div>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">SKU:</span>
+                            <span class="meta-value">PAN-IVO-3262</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Category:</span>
+                            <span class="meta-value">Bathroom Tiles</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Tags:</span>
+                            <span class="meta-value">Wall Tiles, Floor Tiles, Glossy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="openTab(event, 'description')">Description</button>
+                    <button class="tab-btn" onclick="openTab(event, 'specifications')">Specifications</button>
+                    <button class="tab-btn" onclick="openTab(event, 'reviews')">Reviews (0)</button>
+                </div>
+                
+                <div class="tab-content active" id="description">
+                    <h3>Premium Quality Tiles for Your Home</h3>
+                    <p>The Pantheon Ivory Tile represents the pinnacle of tile manufacturing, combining timeless elegance with exceptional durability. Each tile is crafted using state-of-the-art printing technology to create realistic marble veining patterns that add depth and character to your space.</p>
+                    <p>Perfect for bathroom walls and floors, these tiles can also be used in kitchens, living rooms, and hallways. The glossy finish reflects light beautifully, making smaller spaces appear larger and more inviting.</p>
+                    <h3>Easy Installation and Maintenance</h3>
+                    <p>These tiles are designed for easy installation using standard tile adhesives. The consistent size and straight edges ensure minimal grout lines for a seamless finish. Cleaning is simple - just wipe with a damp cloth or use mild cleaning solutions.</p>
+                </div>
+                
+                <div class="tab-content" id="specifications">
+                    <h3>Product Specifications</h3>
+                    <p><strong>Dimensions:</strong> 32 x 62.5 cm</p>
+                    <p><strong>Thickness:</strong> 9mm</p>
+                    <p><strong>Material:</strong> Ceramic</p>
+                    <p><strong>Finish:</strong> Glossy</p>
+                    <p><strong>Color:</strong> Ivory</p>
+                    <p><strong>Pattern:</strong> Marble Effect</p>
+                    <p><strong>Water Absorption:</strong> < 0.5%</p>
+                    <p><strong>Weight per tile:</strong> 2.5 kg</p>
+                    <p><strong>Coverage:</strong> 1 box = 1.62 m²</p>
+                </div>
+                
+                <div class="tab-content" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    <p>No reviews yet. Be the first to review this product!</p>
+                </div>
+            </div>
+            
+            <!-- Related Products -->
+            <section class="related-products">
+                <h2>Related Products</h2>
+                <div class="related-grid">
+                    <a href="product-detail.html" class="related-card">
+                        <div class="related-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=400&fit=crop" alt="Heritage Star Blue">
+                        </div>
+                        <div class="related-info">
+                            <p class="related-category">Bathroom Tiles</p>
+                            <h3 class="related-title">Heritage Star Blue</h3>
+                            <p class="related-price">£38.00</p>
+                        </div>
+                    </a>
+                    
+                    <a href="product-detail.html" class="related-card">
+                        <div class="related-image">
+                            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=400&h=400&fit=crop" alt="Signature Velar">
+                        </div>
+                        <div class="related-info">
+                            <p class="related-category">Floor Tiles</p>
+                            <h3 class="related-title">Signature Velar</h3>
+                            <p class="related-price">£45.00</p>
+                        </div>
+                    </a>
+                    
+                    <a href="product-detail.html" class="related-card">
+                        <div class="related-image">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop" alt="Loft Greige">
+                        </div>
+                        <div class="related-info">
+                            <p class="related-category">Kitchen Tiles</p>
+                            <h3 class="related-title">Loft Greige</h3>
+                            <p class="related-price">£52.00</p>
+                        </div>
+                    </a>
+                    
+                    <a href="product-detail.html" class="related-card">
+                        <div class="related-image">
+                            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400&h=400&fit=crop" alt="Marble Classic">
+                        </div>
+                        <div class="related-info">
+                            <p class="related-category">Wall Tiles</p>
+                            <h3 class="related-title">Marble Classic</h3>
+                            <p class="related-price">£55.00</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+@endsection

@@ -52,6 +52,7 @@ Route::get('/test_about', [FrontendController::class, 'test_about'])->name('test
 Route::get('/test_contact', [FrontendController::class, 'test_contact'])->name('test_contact');
 Route::get('/test_shop', [FrontendController::class, 'test_shop'])->name('test_shop');
 Route::get('/test_shop_detail', [FrontendController::class, 'test_shop_detail'])->name('test_shop_detail');
+Route::get('/test_checkout', [FrontendController::class, 'test_checkout'])->name('test_checkout');
 // Route::get('/test_shop_detail/{?id}', [FrontendController::class, 'test_shop_detail'])->name('test_shop_detail');
 
 
