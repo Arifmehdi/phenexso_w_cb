@@ -273,6 +273,60 @@
                                 border-right: none;
                                 padding-right: 0;
                             }
+
+                            /* MEGA MENU FULL WIDTH FIX */
+                            @media (min-width: 800px) {
+                                .navigation-snippet .nav-second-level-wrapper {
+                                    position: fixed !important;
+                                    left: 0 !important;
+                                    right: 0 !important;
+                                    width: 100% !important;
+                                    max-width: 100% !important;
+                                    top: var(--header-height, 70px) !important;
+                                    transform: none !important;
+                                }
+                                
+                                /* Center the container content */
+                                .navigation-snippet .nav-second-level-wrapper .container {
+                                    max-width: 1400px !important;
+                                    margin: 0 auto !important;
+                                    width: 100% !important;
+                                }
+                                
+                                /* Align nav-second-level to start from left */
+                                .navigation-snippet .nav-second-level-wrapper .nav-second-level {
+                                    justify-content: flex-start !important;
+                                    align-items: flex-start !important;
+                                }
+                                
+                                /* TABS STYLE: Links on left, images on right */
+                                .navigation-snippet .nav-second-level-wrapper .nav-second-level .child-link {
+                                    flex: 0 0 auto !important;
+                                    width: auto !important;
+                                    min-width: 280px !important;
+                                    margin: 30px 40px 30px 0 !important;
+                                }
+                                
+                                /* Image section on the right */
+                                .navigation-snippet .nav-second-level-wrapper .nav-second-level .child-link.child-link__image {
+                                    display: flex !important;
+                                    flex-direction: row !important;
+                                    flex-wrap: wrap !important;
+                                    gap: 15px !important;
+                                    max-width: 400px !important;
+                                    margin-left: auto !important;
+                                }
+                                
+                                .navigation-snippet .nav-second-level-wrapper .nav-second-level .child-link.child-link__image > a {
+                                    flex: 0 0 calc(33.333% - 10px) !important;
+                                    max-width: 120px !important;
+                                }
+                            }
+
+                            /* Header height variable */
+                            :root {
+                                --header-height: 70px;
+                            }
                         </style>
 
                         <section class="navigation-snippet container">

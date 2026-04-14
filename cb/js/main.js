@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSearchBox();
     initProductHover();
     initSmoothScroll();
+    initMegaMenuTabs();
 });
 
 /**
@@ -144,6 +145,45 @@ function initNewsletterForm() {
                 alert('Thank you for subscribing!');
                 this.reset();
             }
+        });
+    }
+}
+
+/**
+ * Mega Menu Tabs & Position
+ */
+function initMegaMenuTabs() {
+    window.openTab = function(evt, tabId, menuName) {
+        const panel = document.getElementById(tabId);
+        if (!panel) return;
+        
+        const parent = panel.closest('.mega-menu-images');
+        if (!parent) return;
+        
+        const tabContents = parent.querySelectorAll('.mega-menu-tab-content');
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        const tabBtns = parent.querySelectorAll('.mega-menu-tab-btn');
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        
+        panel.classList.add('active');
+        evt.currentTarget.classList.add('active');
+    };
+    
+    // Position mega menu from left edge of nav-menu
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        const navLeft = navMenu.offsetLeft;
+        
+        document.querySelectorAll('.has-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', function() {
+                const megaMenu = this.querySelector('.mega-menu');
+                if (megaMenu) {
+                    megaMenu.style.left = navLeft + 'px';
+                    megaMenu.style.opacity = '1';
+                    megaMenu.style.visibility = 'visible';
+                }
+            });
         });
     }
 }

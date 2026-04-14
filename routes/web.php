@@ -47,6 +47,14 @@ use App\Http\Controllers\Frontend\ContactController;
 // Route::post('order/ipn', [SslCommerzPaymentController::class, 'orderIpn']);
 // //SSLCOMMERZ END
 
+Route::get('/test_home', [FrontendController::class, 'test_home'])->name('test_home');
+Route::get('/test_about', [FrontendController::class, 'test_about'])->name('test_about');
+Route::get('/test_contact', [FrontendController::class, 'test_contact'])->name('test_contact');
+Route::get('/test_shop', [FrontendController::class, 'test_shop'])->name('test_shop');
+Route::get('/test_shop_detail', [FrontendController::class, 'test_shop_detail'])->name('test_shop_detail');
+// Route::get('/test_shop_detail/{?id}', [FrontendController::class, 'test_shop_detail'])->name('test_shop_detail');
+
+
 Route::get('/testidcard', [FrontendController::class, 'testidcard'])->name('testidcard');
 
 Route::get('/test-email', function () {

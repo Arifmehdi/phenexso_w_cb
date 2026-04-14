@@ -45,6 +45,31 @@ class FrontendController extends Controller
         $this->middleware('locale');
     }
 
+    public function test_home()
+    {
+        return view('website.test.home');
+    }
+
+    public function test_about()
+    {
+        return view('website.test.about');
+    }
+
+    public function test_contact()
+    {
+        return view('website.test.contact');
+    }
+
+    public function test_shop()
+    {
+        return view('website.test.shop');
+    }
+    public function test_shop_detail()
+    {
+        return view('website.test.shop_detail');
+    }
+
+
     public function index()
     {
         $data['categories'] = ProductCategory::where('active', 1)
