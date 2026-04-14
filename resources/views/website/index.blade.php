@@ -936,7 +936,7 @@
                 <div class="cl-product-card cl-product-card--minimal cl-product-card--7464710602942">
 
                   <div class="product-badges">
-                    <div class="product-badge_container" style="background-color: #ffdc59;">
+                    <div class="product-badge_container" style="background-color: #E01C2A;">
                       <span class="product-badge__label" style="color: #0d1f22;">Bestseller</span>
                     </div>
                   </div>
@@ -1075,7 +1075,7 @@
                 <div class="cl-product-card cl-product-card--minimal cl-product-card--8292751638718">
 
                   <div class="product-badges">
-                    <div class="product-badge_container" style="background-color: #ffdc59;">
+                    <div class="product-badge_container" style="background-color: #E01C2A;">
                       <span class="product-badge__label" style="color: #0d1f22;">Bestseller</span>
                     </div>
                   </div>
@@ -1214,7 +1214,7 @@
                 <div class="cl-product-card cl-product-card--minimal cl-product-card--7157723627710">
 
                   <div class="product-badges">
-                    <div class="product-badge_container" style="background-color: #ffdc59;">
+                    <div class="product-badge_container" style="background-color: #E01C2A;">
                       <span class="product-badge__label" style="color: #0d1f22;">Bestseller</span>
                     </div>
                   </div>
@@ -1354,7 +1354,7 @@
                 <div class="cl-product-card cl-product-card--minimal cl-product-card--15320726143358">
 
                   <div class="product-badges">
-                    <div class="product-badge_container" style="background-color: #ffdc59;">
+                    <div class="product-badge_container" style="background-color: #E01C2A;">
                       <span class="product-badge__label" style="color: #0d1f22;">Bestseller</span>
                     </div>
                   </div>
@@ -1493,7 +1493,7 @@
                 <div class="cl-product-card cl-product-card--minimal cl-product-card--7755408867518">
 
                   <div class="product-badges">
-                    <div class="product-badge_container" style="background-color: #ffdc59;">
+                    <div class="product-badge_container" style="background-color: #E01C2A;">
                       <span class="product-badge__label" style="color: #0d1f22;">Bestseller</span>
                     </div>
                   </div>
@@ -1626,7 +1626,7 @@
                 <div class="cl-product-card cl-product-card--minimal cl-product-card--14866172412286">
 
                   <div class="product-badges">
-                    <div class="product-badge_container" style="background-color: #ffdc59;">
+                    <div class="product-badge_container" style="background-color: #E01C2A;">
                       <span class="product-badge__label" style="color: #0d1f22;">Bestseller</span>
                     </div>
                   </div>

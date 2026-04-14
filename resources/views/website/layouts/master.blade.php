@@ -15,8 +15,9 @@
     <meta name="language" content="English">
     <meta name="geo.region" content="BD">
     <meta name="geo.placename" content="Bangladesh">
-
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">

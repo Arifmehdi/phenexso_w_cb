@@ -291,9 +291,11 @@
                                     <ul class="nav-first-level">
                                         {{-- Home --}}
                                         <li id="nav-home" data-nav-item="true">
-                                            <a href="{{ route('home') }}" class="btn-nav-first-level" data-preloadlink="true">
-                                                <span>{{__('Home')}}</span>
-                                            </a>
+                                            <span class="btn-nav-first-level" data-nav-toggle="">
+                                                <a href="{{ route('home') }}">
+                                                    <span>{{__('Home')}}</span>
+                                                </a>
+                                            </span>
                                         </li>
 
                                         {{-- Dynamic Product Categories --}}
