@@ -1,0 +1,44 @@
+Master script loaded. product:7653:11
+CSRF Token found: hilYYLflHZeekZGtGOoYDdbDPX1M9jB6TUtswkLy product:7655:11
+jQuery AJAX setup with CSRF token complete. product:7660:11
+Uncaught TypeError: The specifier “cdn/shopifycloud/shop-js/modules/v2/client.init-shop-cart-sync_dlpDe4U9.en.esm.js” was a bare specifier, but was not remapped to anything. Relative module specifiers must start with “./”, “../” or “/”. product
+Load FIRE __opt-themec62c.js:1:5878
+Yes-optimization __opt-themec62c.js:1:5216
+Document ready.
+
+
+'.addToCart' clicked. product:7674:13
+Preparing to send AJAX request to: http://musafir_international.test/add-to-cart product:7680:13
+Product ID: 5 Quantity: 1 product:7681:13
+XHRPOST
+http://musafir_international.test/add-to-cart
+[HTTP/1.1 419 unknown status 246ms]
+
+AJAX request failed. product:7701:14
+Status: error product:7702:14
+Error: unknown status product:7703:14
+Response Text: 
+{
+    "message": "CSRF token mismatch.",
+    "exception": "Symfony\\Component\\HttpKernel\\Exception\\HttpException",
+    "file": "D:\\laragon\\laragon\\www\\musafir_international\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+    "line": 396,
+    "trace": [
+        {
+            "file": "D:\\laragon\\laragon\\www\\musafir_international\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
+            "line": 367,
+            "function": "prepareException",
+            "class": "Illuminate\\Foundation\\Exceptions\\Handler",
+            "type": "->"
+        },
+        {
+            "file": "D:\\laragon\\laragon\\www\\musafir_international\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
+            "line": 51,
+            "function": "render",
+            "class": "Illuminate\\Foundation\\Exceptions\\Handler",
+            "type": "->"
+        },
+        {
+            "file": "D:\\laragon\\laragon\\ww…
+product:7704:14
+All done!
