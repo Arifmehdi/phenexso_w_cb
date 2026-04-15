@@ -6,6 +6,7 @@
 :root {
     --primary-color: #212a2f;
     --secondary-color: #f9d175;
+    --custom-color: #F31A21;
     --accent-color: #fff0e5;
     --text-dark: #212a2f;
     --text-light: #ffffff;
@@ -82,9 +83,9 @@ img {
 }
 
 .btn-secondary {
-    background-color: var(--secondary-color);
-    color: var(--text-dark);
-    border-color: var(--secondary-color);
+    background-color: var(--custom-color);
+    color: #FFFFFF;
+    border-color: var(--custom-color);
 }
 
 .btn-secondary:hover {
@@ -384,7 +385,7 @@ img {
 }
 
 .shop-link:hover {
-    color: var(--secondary-color);
+    color: var(--custom-color);
 }
 
 /* ============================================
@@ -644,7 +645,7 @@ img {
    Footer
    ============================================ */
 .footer {
-    background-color: var(--secondary-color);
+    background-color: #FFF0E5;
     padding: 60px 0 30px;
 }
 
@@ -848,7 +849,7 @@ img {
     left: 14px;
     right: 14px;
     height: 2px;
-    background-color: var(--secondary-color);
+    background-color: var(--custom-color);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -858,7 +859,7 @@ img {
 }
 
 .nav-menu > li:hover > a {
-    color: var(--secondary-color);
+    color: var(--custom-color);
 }
 
 .has-dropdown {
@@ -876,7 +877,7 @@ img {
     left: 0;
     width: 100%;
     background-color: #ffffff;
-    border-top: 2px solid var(--secondary-color);
+    border-top: 2px solid var(--custom-color);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     opacity: 0;
     visibility: hidden;
@@ -940,7 +941,7 @@ img {
 }
 
 .mega-menu-col ul li a:hover {
-    color: var(--secondary-color);
+    color: var(--custom-color);
     padding-left: 6px;
 }
 
@@ -1023,7 +1024,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--secondary-color);
+    background-color:var(--custom-color);
+    color:#ffffff;
     border-radius: 50%;
     transition: all 0.3s ease;
 }

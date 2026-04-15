@@ -9,7 +9,7 @@
         <div class="hero-slide">
             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop" alt="Tiles">
             <div class="hero-content">
-                <h1>Musafir International</h1>
+                <h1>City Builders</h1>
                 <p>Get ready for a full house with new tiles<br>delivered in time for limited time</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn btn-primary">New In</a>
@@ -86,7 +86,34 @@
         </div>
     </section>
 
-    <!-- Logo Slider / Brand Marquee -->
+
+
+
+        <!-- Stats Strip -->
+    <section style="background: #E81D23; padding: 40px 0;">
+        <div class="container">
+            <div style="display:grid; grid-template-columns: repeat(4,1fr); gap: 20px; text-align: center;">
+                <div>
+                    <div style="font-size:40px; font-weight:800; color:#fff;">800+</div>
+                    <div style="font-size:14px; color:rgba(255,255,255,0.85); margin-top:4px; font-weight:500;">Products Available</div>
+                </div>
+                <div>
+                    <div style="font-size:40px; font-weight:800; color:#fff;">500K+</div>
+                    <div style="font-size:14px; color:rgba(255,255,255,0.85); margin-top:4px; font-weight:500;">Happy Customers</div>
+                </div>
+                <div>
+                    <div style="font-size:40px; font-weight:800; color:#fff;">25+</div>
+                    <div style="font-size:14px; color:rgba(255,255,255,0.85); margin-top:4px; font-weight:500;">Years Experience</div>
+                </div>
+                <div>
+                    <div style="font-size:40px; font-weight:800; color:#fff;">100%</div>
+                    <div style="font-size:14px; color:rgba(255,255,255,0.85); margin-top:4px; font-weight:500;">Quality Guaranteed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Logo Slider / Brand Marquee -->
     <section class="logo-slider-section">
         <div class="container">
             <h3 class="section-title">As Seen In</h3>
@@ -114,6 +141,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Products Slider -->
     <section class="products-section">

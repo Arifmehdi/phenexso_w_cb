@@ -30,10 +30,10 @@
 
                 {{-- Logo --}}
                 <a href="{{ url('/') }}" class="logo">
-                    <img src="{{ asset('images/logo.png') }}"
-                         onerror="this.onerror=null;this.src='https://via.placeholder.com/177x70?text=Logo'"
-                         alt="Musafir International"
-                         width="177" height="70">
+                <img src="{{ asset('images/logo.png') }}"
+                    onerror="this.onerror=null;this.src='{{ asset('public/logo.jpg') }}';"
+                    alt="Musafir International"
+                    width="177" height="70">
                 </a>
 
                 {{-- Icons: language + sign in --}}
