@@ -1146,16 +1146,18 @@ class FrontendController extends Controller
     public function orderPrint(Order $order)
     {
         $items = $order->orderItems()->get();
+        $ws = WebsiteParameter::first();
 
-        return view('user.order.orderPrint', compact('order', 'items'));
+        return view('user.order.orderPrint', compact('order', 'items', 'ws'));
     }
 
 
      public function orderChalan(Order $order)
     {
         $items = $order->orderItems()->get();
+        $ws = WebsiteParameter::first();
 
-        return view('user.order.orderChalan', compact('order', 'items'));
+        return view('user.order.orderChalan', compact('order', 'items', 'ws'));
     }
 
     public function testidcard(){

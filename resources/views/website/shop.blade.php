@@ -1,4 +1,4 @@
-@extends('website.layouts.master')
+@extends('website.test.test_include.test_app')
 
 @section('title', 'Shop - '. env('APP_NAME'))
 

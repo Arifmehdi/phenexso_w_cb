@@ -45,12 +45,17 @@ class ProductController extends Controller
             ->orderBy('name_en')
             ->get();
 
+        $slug = null;
+        $category = null;
+
         return view("website.product.product", compact(
             'products', 
             'categories', 
             'total_products', 
             'subcategories',
-            'allRootCategories' // Add this
+            'allRootCategories',
+            'slug',
+            'category'
         ));
     }
 

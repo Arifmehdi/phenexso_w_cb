@@ -1,4 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
 		console.log("Master script loaded.");
 		var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -33,15 +32,31 @@
 				$.post(url, { product: product_id, qty: qty, _token: $('meta[name="csrf-token"]').attr('content') }, function (res) {
 					console.log("AJAX success response:", res);
 					if (res.status) {
+						console.log("Updating UI for product ID:", product_id);
 						btn.closest(".productCartItem").html(res.productCartItem);
 						$(".cartCount").text(res.cartCount);
 						$(".cartItemsCount").text(res.cartItemsCount);
-						$(".cartTotalPrice").text(res.cartTotal.toFixed(2) + " tk");
-						$(".mobileCartTotalPrice").text("৳" + res.cartTotal.toFixed(2));
+						
+						if (typeof res.cartTotal !== 'undefined') {
+							let total = parseFloat(res.cartTotal) || 0;
+							$(".cartTotalPrice").text(total.toFixed(2) + " tk");
+							$(".mobileCartTotalPrice").text("৳" + total.toFixed(2));
+						}
 
+						console.log("Firing Swal toast with message:", res.message);
 						Swal.fire({
-							toast: true, icon: "success", title: res.message,
-							position: "top", timer: 2000, showConfirmButton: false
+							toast: true,
+							icon: "success",
+							title: res.message,
+							position: "top-end",
+							timer: 5000,
+							timerProgressBar: true,
+							showConfirmButton: false,
+							didOpen: (toast) => {
+								toast.style.zIndex = "2147483647";
+								toast.style.marginTop = "120px"; // Move it further down
+								toast.style.border = "2px solid #28a745"; // Add a border to make it stand out
+							}
 						});
 					} else {
 						console.error("AJAX response status is false:", res.message);

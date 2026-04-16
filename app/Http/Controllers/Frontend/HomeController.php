@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $data['products'] = Product::where('active', true)->orderByDesc('id')
             ->limit(4)
-            ->select('id','slug','active','featured_image','name_en','name_bn')->get();
+            ->select('id','slug','active','featured_image','name_en','name_bn', 'price','final_price')->get();
 
         $data['popular_products'] = Product::where('active', true)->orderByDesc('id')
             ->skip(4)
@@ -35,7 +35,7 @@ class HomeController extends Controller
             ->get();
         $data['testimonials'] = Testimonial::latest()->limit(6)->get();
 
-        return view('website.home_index', $data);
+        return view('website.test.home', $data);
         
         $data['products'] =  Product::orderByDesc('id')->get();
         return view('website.index', $data);

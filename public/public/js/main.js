@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     initMobileMenu();
     initLanguageDropdown();
+    initAccountDropdown();
     initSearchBox();
     initProductHover();
     initSmoothScroll();
@@ -54,6 +55,25 @@ function initLanguageDropdown() {
         const dropdown = document.getElementById('languageDropdown');
         if (selector && dropdown && !selector.contains(e.target)) {
             dropdown.classList.remove('show');
+        }
+    });
+}
+
+/* ── Account dropdown ────────────────────────────────────────── */
+function initAccountDropdown() {
+    const accountSelector = document.querySelector('.account-dropdown');
+    const accountDropdown = document.getElementById('accountDropdown');
+
+    // If not logged in → stop here
+    if (!accountSelector || !accountDropdown) return;
+
+    window.toggleAccountDropdown = function () {
+        accountDropdown.classList.toggle('show');
+    };
+
+    document.addEventListener('click', function (e) {
+        if (!accountSelector.contains(e.target)) {
+            accountDropdown.classList.remove('show');
         }
     });
 }

@@ -53,18 +53,41 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('login') }}" class="account-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                            <circle cx="12" cy="7" r="4"/>
-                        </svg>
-                        <span>{{ __('Sign In')}}</span>
-                    </a>
+                    {{-- Account Dropdown --}}
+                    @if(Auth::check())
+                        @php $user = auth()->user(); @endphp
+                        <div class="account-dropdown">
+                            <button type="button" onclick="toggleAccountDropdown()" aria-haspopup="true" aria-expanded="false" class="account-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <span>{{ Str::limit($user->name, 10) }}</span>
+                            </button>
+                            <div class="dropdown-menu" id="accountDropdown" role="menu">
+                                @if ($user->hasRole('admin'))
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{__('Admin Dashboard')}}</a>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('user.dashboard') }}">{{__('Member Dashboard')}}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                            </div>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="account-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>{{ __('Sign In')}}</span>
+                        </a>
+                    @endif
 
                 </div>
             </div>
         </div>
-    </div>{{-- /header-top --}}
+    </div>
+    {{-- /header-top --}}
 
     {{-- ── Main navigation ─────────────────────────────────────── --}}
     <nav class="main-nav" id="mainNav" aria-label="Main navigation">

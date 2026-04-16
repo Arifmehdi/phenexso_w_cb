@@ -225,7 +225,7 @@ img {
 
 .dropdown-menu {
     position: absolute;
-    top: 100%;
+    /* top: 100%; */
     right: 0;
     background: #ffffff;
     border: 1px solid var(--border-color);

@@ -96,7 +96,7 @@
                 <p>As a family company with decades of tile experience, we believe great design doesn't need to cost the
                     earth. And with over 800 wall and floor tiles to choose from, it's no wonder more than 500,000
                     customers trust us for their homes.</p>
-                <a href="about.html" class="btn btn-dark">About Us</a>
+                <a href="{{ route('test_about') }}" class="btn btn-dark">About Us</a>
             </div>
             <div class="about-image">
                 <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&h=600&fit=crop"
@@ -171,7 +171,7 @@
 <section class="products-section">
     <div class="container">
         <div class="section-header">
-            <h2>Our most loved tiles</h2>
+            <h2>Our most loved Products</h2>
             <a href="#" class="view-all">View All</a>
         </div>
         <div class="products-slider">
