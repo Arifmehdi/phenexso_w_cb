@@ -19,7 +19,7 @@
 
                 {{-- Search box --}}
                 <div class="search-box">
-                    <input type="search" placeholder="What are you looking for?">
+                    <input type="search" placeholder="{{__('What are you looking for')}}?">
                     <button type="submit" aria-label="Search">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8"/>
@@ -30,8 +30,8 @@
 
                 {{-- Logo --}}
                 <a href="{{ url('/') }}" class="logo">
-                <img src="{{ asset('images/logo.png') }}"
-                    onerror="this.onerror=null;this.src='{{ asset('public/logo.jpg') }}';"
+                <img src="{{ route('imagecache', ['template'=>'original','filename' => $ws->logo_alt()]) }}"
+                    onerror="this.onerror=null;this.src='{{ asset('images/logo.png') }}';"
                     alt="Musafir International"
                     width="177" height="70">
                 </a>
@@ -48,17 +48,17 @@
                             <span>Language</span>
                         </button>
                         <div class="dropdown-menu" id="languageDropdown" role="menu">
-                            <a href="#" role="menuitem">English</a>
-                            <a href="#" role="menuitem">বাংলা</a>
+                            <a href="{{ route('welcome.changeLanguage', ['lang' => 'en']) }}" role="menuitem">English</a>
+                            <a href="{{ route('welcome.changeLanguage', ['lang' => 'bn']) }}" role="menuitem">বাংলা</a>
                         </div>
                     </div>
 
-                    <a href="#" class="account-btn">
+                    <a href="{{ route('login') }}" class="account-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
                         </svg>
-                        <span>Sign In</span>
+                        <span>{{ __('Sign In')}}</span>
                     </a>
 
                 </div>
@@ -72,9 +72,102 @@
             <ul class="nav-menu">
 
                 {{-- Home --}}
-                <li><a href="{{ route('test_home') }}" @class(['active' => request()->is('/')])>Home</a></li>
+                <li><a href="{{ route('test_home') }}" @class(['active' => request()->is('/')])>{{ __('Home') }}</a></li>
 
-                {{-- ── Bathroom Tiles ── --}}
+                @php
+                    $parentCategories = \App\Models\ProductCategory::whereNull('parent_id')
+                        ->where('active', 1)
+                        ->orderBy('name_' . app()->getLocale())
+                        ->get();
+                @endphp
+
+                @foreach($parentCategories as $category)
+
+                <li class="has-dropdown">
+                    <a href="#">{{ $category->{'name_' . app()->getLocale()} }}</a>
+
+                    <div class="mega-menu" role="region">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-row">
+
+                                {{-- LEFT SIDE (SUBCATEGORIES) --}}
+                                <div class="mega-menu-links">
+                                    
+                                    @php
+                                        $subCategories = \App\Models\ProductCategory::where('parent_id', $category->id)
+                                            ->where('active', 1)
+                                            ->orderBy('name_' . app()->getLocale())
+                                            ->get();
+
+                                        $chunks = $subCategories->chunk(5); // 5 per column
+                                    @endphp
+
+                                    @foreach($chunks as $chunk)
+                                        <div class="mega-menu-col">
+                                            <h4>{{ $category->{'name_' . app()->getLocale()} }}</h4>
+                                            <ul>
+                                                @foreach($chunk as $sub)
+                                                    <li>
+                                                        <a href="{{ route('productCategory', $sub->slug) }}">
+                                                            {{ $sub->{'name_' . app()->getLocale()} }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                                {{-- RIGHT SIDE (IMAGES) --}}
+                                <div class="mega-menu-images">
+                                    
+                                    @php
+                                        $products = \App\Models\Product::whereHas('categories', function($q) use ($category) {
+                                                $q->where('product_category_id', $category->id);
+                                            })
+                                            ->where('active', 1)
+                                            ->latest()
+                                            ->take(3)
+                                            ->get();
+                                    @endphp
+
+                                    @foreach($products as $product)
+                                        <a href="{{ route('productDetails', $product->slug) }}" class="menu-image-block">
+                                            
+                                            <div class="image-wrap">
+                                                <img 
+                                                    src="{{ route('imagecache', ['template'=>'original','filename'=>$product->featured_image]) }}"
+                                                    alt="{{ $product->{'name_' . app()->getLocale()} }}"
+                                                    loading="lazy"
+                                                >
+                                            </div>
+
+                                            <div class="image-content">
+                                                <span class="title">
+                                                    {{ Str::limit($product->{'name_' . app()->getLocale()}, 30) }}
+                                                </span>
+                                                <span class="arrow">
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                        </a>
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                @endforeach
+
+
+                <!-- {{-- ── Bathroom Tiles ── --}}
                 <li class="has-dropdown">
                     <a href="#">Bathroom Tiles</a>
                     <div class="mega-menu" role="region" aria-label="Bathroom Tiles menu">
@@ -560,11 +653,11 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
 
                 {{-- Static links --}}
-                <li><a href="{{ route('test_about') }}" @class(['active' => request()->is('about')])>About Us</a></li>
-                <li><a href="{{ route('test_contact') }}" @class(['active' => request()->is('contact')])>Contact Us</a></li>
+                <li><a href="{{ route('test_about') }}" @class(['active' => request()->is('about')])>{{ __('About Us') }}</a></li>
+                <li><a href="{{ route('test_contact') }}" @class(['active' => request()->is('contact')])>{{ __('Contact Us') }}</a></li>
 
             </ul>
         </div>

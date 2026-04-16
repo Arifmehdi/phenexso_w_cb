@@ -9,8 +9,8 @@
             <div class="footer-col">
                 <h4>Contact Us</h4>
                 <div class="contact-info">
-                    <p><strong>Phone:</strong> 0330 094 0304</p>
-                    <p><strong>Email:</strong> info@musafirinternational.com</p>
+                    <p><strong>Phone:</strong>{{ $ws->contact_mobile }}</p>
+                    <p><strong>Email:</strong>{{ $ws->contact_email }}</p>
                     <p>Saturday to Thursday &mdash; 09:00am to 5:00pm</p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <a href="#">Terms &amp; Conditions</a>
                 <a href="#">Privacy &amp; Cookies</a>
             </div>
-            <p>&copy; {{ date('Y') }} Musafir International, All Rights Reserved</p>
+            <p>&copy; {{ date('Y') }} <a href="https://phenexsoft.com/" target="_blank">PhenexSoft</a>, All Rights Reserved</p>
         </div>
     </div>
 </footer>

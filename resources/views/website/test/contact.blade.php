@@ -126,7 +126,7 @@
                             </svg>
                             <div>
                                 <h4>Phone</h4>
-                                <p>0330 094 0304</p>
+                                <p>{{ $ws->contact_mobile }}</p>
                             </div>
                         </div>
                         
@@ -137,7 +137,7 @@
                             </svg>
                             <div>
                                 <h4>Email</h4>
-                                <p>info@musafirinternational.com</p>
+                                <p>{{ $ws->contact_email }}</p>
                             </div>
                         </div>
                         
@@ -148,7 +148,7 @@
                             </svg>
                             <div>
                                 <h4>Address</h4>
-                                <p>Dhaka, Bangladesh</p>
+                                <p>{{ $ws->contact_address}}</p>
                             </div>
                         </div>
                         
@@ -167,7 +167,22 @@
                 
                 <div class="contact-form">
                     <h2>Send us a Message</h2>
-                    <form id="contactForm">
+                    <form action="{{ route('contact.store') }}" method="POST" >
+                    @csrf
+                        {{-- Success Message --}}
+                        @if(session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        {{-- Validation Errors --}}
+                        @if($errors->any())
+                            <div class="alert alert-danger" style="color: red">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label for="name">Name *</label>
                             <input type="text" id="name" name="name" required>
@@ -200,7 +215,7 @@
             </div>
             
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.672462827431!2d90.40775831543158!3d23.75091948418881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3754b40e89c1f5f3%3A0x4a06e4c8d2b3f7a!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2s!4v1645000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="{{ $ws->iframe_map }}" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>

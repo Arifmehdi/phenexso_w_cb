@@ -113,6 +113,10 @@
                                     <label for="youtube_url" class="  control-label">Youtube Url</label>
                                     <input type="text" name="youtube_url" class="form-control" value="{{ old('youtube_url') ?: $websiteParameter->youtube_url ?? '' }}" id="youtube_url" placeholder="Youtube Url" autocomplete="off">
                                 </div>
+                                <div class="form-group ">
+                                    <label for="iframe_map" class="  control-label">Iframe Map</label>
+                                    <input type="text" name="iframe_map" class="form-control" value="{{ old('iframe_map') ?: $websiteParameter->iframe_map ?? '' }}" id="iframe_map" placeholder="Iframe Map" autocomplete="off">
+                                </div>
 
                             </div>
                         </div>

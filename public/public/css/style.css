@@ -95,7 +95,9 @@ img {
 }
 
 .btn-dark {
-    background-color: #000000;
+    /* background-color: #000000; */
+    /* color: #ffffff; */
+    background-color: var(--custom-color);
     color: #ffffff;
 }
 
@@ -109,7 +111,7 @@ img {
 .header {
     position: sticky;
     top: 0;
-    z-index: 9999;
+    z-index: 10010;
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
@@ -180,7 +182,7 @@ img {
 }
 
 .search-box button:hover {
-    color: var(--secondary-color);
+    color: var(--custom-color);
 }
 
 .logo img {
@@ -208,7 +210,7 @@ img {
 
 .language-selector button:hover,
 .account-btn:hover {
-    color: var(--secondary-color);
+    color: var(--custom-color);
 }
 
 .language-selector button span,
@@ -230,7 +232,7 @@ img {
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     min-width: 120px;
-    z-index: 1050;
+    z-index: 10002 !important;
     display: none;
 }
 
@@ -1105,4 +1107,83 @@ img {
     .mega-menu-images {
         display: none; /* hide images on mobile to save space */
     }
+}
+
+
+/* testimonial section  */
+    .testimonials-section {
+    padding: 80px 0;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+/* Slider */
+.testimonial-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonial-track {
+    display: flex;
+    gap: 20px;
+    animation: scroll 25s linear infinite;
+}
+
+/* Card */
+.testimonial-card {
+    min-width: 300px;
+    max-width: 300px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* Animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Content */
+.testimonial-stars {
+    color: #f5a623;
+    margin-bottom: 10px;
+}
+
+.testimonial-text {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    background: #E81D23;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Pause on hover */
+.testimonial-slider:hover .testimonial-track {
+    animation-play-state: paused;
 }

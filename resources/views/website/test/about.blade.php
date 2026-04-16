@@ -67,25 +67,11 @@
 
     <section class="about-content-section">
         <div class="container">
-            <h2>Tiles for every home</h2>
-            <p>As a family company with decades of tile experience, we believe great design doesn't need to cost the earth. And with over 800 wall and floor tiles to choose from, it's no wonder more than 500,000 customers trust us for their homes.</p>
-            <p>Musafir International is Bangladesh's premier manufacturer of premium tiles, parking tiles, hollow blocks, solid bricks, pavers & construction materials. We provide durable, stylish solutions for residential & commercial projects.</p>
-            <p>Our commitment to quality has made us a trusted name in the construction industry. We continuously innovate to bring you the best products at competitive prices.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Quality Products</h3>
-                    <p>We ensure every product meets the highest quality standards</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Expert Team</h3>
-                    <p>Our experienced team provides professional guidance</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Customer First</h3>
-                    <p>We prioritize customer satisfaction in everything we do</p>
-                </div>
-            </div>
+            @if(app()->getLocale() == 'en')
+                {!! $ws->about_en !!}
+            @else
+                {!! $ws->about_bn !!}
+            @endif
         </div>
     </section>
 @endsection

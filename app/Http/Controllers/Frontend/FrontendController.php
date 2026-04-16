@@ -47,7 +47,28 @@ class FrontendController extends Controller
 
     public function test_home()
     {
-        return view('website.test.home');
+        $data['products'] = Product::where('active', true)->orderByDesc('id')
+            ->limit(4)
+            ->select('id','slug','active','featured_image','name_en','name_bn', 'price','final_price')->get();
+
+        $data['popular_products'] = Product::where('active', true)->orderByDesc('id')
+            ->skip(4)
+            ->limit(6)
+            ->select('id','price','slug','active','featured_image','name_en','name_bn')->get();
+
+        $data['color_products'] = Product::where('active', true)->orderByDesc('id')
+            ->skip(10) // 4 + 6
+            ->limit(4)
+            ->select('id','slug','active','featured_image','name_en','name_bn')->get();
+
+        $data['slider'] = FrontSlider::latest()->first();
+
+        // ✅ ONLY PARENT CATEGORIES
+        $data['categories'] = ProductCategory::whereNull('parent_id')
+            ->latest()
+            ->get();
+        $data['testimonials'] = Testimonial::latest()->limit(6)->get();
+        return view('website.test.home' ,$data);
     }
 
     public function test_about()

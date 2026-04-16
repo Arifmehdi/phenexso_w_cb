@@ -1,139 +1,187 @@
-@extends('website.layouts.master')
-@section('content')
-<link rel="stylesheet" type="text/css"
-    href="{{ asset('frontend/css/661d3e15ecdbe9010ffa68af_661d3e85aa991d00fdf13a97.css') }}">
-<main role="main" id="MainContent">
-    <div class="shg-clearfix"></div>
-    <div data-region="main" data-shogun-power-up-id="" data-shogun-power-up-type="" data-shogun-page-type="page"
-        data-shogun-variant-id="661d3e85aa991d00fdf13a97" data-shogun-platform-type="shopify"
-        data-shogun-page-version-id="661d3e15ecdbe9010ffa68af" data-shogun-page-id="661d21dc9da9500110b6a7e5"
-        data-shogun-site-id="6a41b354-9fb4-42ac-a828-99a294124b22" data-shogun-id="661d21dc9da9500110b6a7e5"
-        class="shogun-root">
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-bread-crumb
-            image="https://i.shgcdn.com/529b570c-d9d5-4438-83f8-c669ee93d873/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
-            title="Sign IN" subtitle="We're ready to help with all your tile related queries" />
 
-        <div class="shg-box-vertical-align-wrapper">
-            <div id="s-224421d7-282e-474b-a375-c069a5e44019" class="shg-box shg-c">
-                <div class="shg-box-overlay"></div>
-                <div class="shg-box-content">
-                    <div class="shg-c" id="s-cae54723-7b1e-4936-934f-aae8f4a8e5fc">
-                        <div class="shg-rich-text shg-theme-text-content">
-                            <p style="line-height: 24px; text-align: center;"><span style="font-size: 16px;"><span
-                                        data-fontfamily="Averta" style="font-family: Averta;">Have a question about a
-                                        tile, some feedback or maybe you just want a chat? <br>Get in touch by phone or
-                                        email and one of our tile experts will get back to you as soon as possible.
-                                    </span></span></p>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | Business Solutions</title>
+
+    <!-- Favicons -->
+    <link href="{{ asset('frontend/login-data/login/assets') }}/backend/dist/img/favicon.ico" rel="icon">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/backend/dist/css/adminlte.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet"
+        href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- toastr -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/toastr/toastr.min.css">
+    <!-- sweetalert2 -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/sweetalert2/sweetalert2.min.css">
+    <!-- custom styles -->
+    <link rel="stylesheet" href="{{ asset('frontend/login-data/login/assets') }}/dist/css/custom.html">
+    <!-- jQuery -->
+    <script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/jquery/jquery.min.js"></script>
+        </head>
+<body class="hold-transition">
+    <div>
+            <div class="login-page">
+        <div class="login-box">
+            <div class="card card-outline card-primary shadow-lg" style="border-radius: 1rem; transition: all 0.3s ease;">
+                <div class="card-body">
+                    <h3 class="login-box-msg">Welcome Back!</h3>
+                    <p class="text-muted text-center">Please enter your login credentials</p>
+                  {{-- Flash Messages --}}
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
                         </div>
-                    </div>
-                    <div class="shg-box-vertical-align-wrapper">
-                        <div id="s-e9140cfa-e3a8-4604-9f27-84678ce14ed5" class="shg-box shg-c">
-                            <div class="shg-box-overlay"></div>
-                            <div class="shg-box-content">
-                                <div class="shg-c" id="s-82120338-7d38-4a0a-aad3-4f6baa61ae0d">
-                                    <div class="shg-rich-text shg-theme-text-content">
-                                        <p> </p>
-                                        <p style="text-align: center;"><span style="font-size: 16px;"><span
-                                                    data-fontfamily="Averta" style="font-family: Averta;">Have a
-                                                    question about a tile, some feedback or maybe you just want a chat?
-                                                    Get in touch by phone or email and one of our tile experts will get
-                                                    back to you as soon as possible. </span></span></p>
-                                        <div class="band">
-                                            <div class="wrap wrap--narrow wrap--tab-width">
-                                                <div class="gr1d cols-3 cols-m-1 gap-40px">
-                                                    <div class="col-span-2 col-span-m-1">
-                                                        <form method="post" enctype="multipart/form-data"
-                                                            action="https://loaf.com/contact-us" class="contact-form"
-                                                            accept-charset="utf-8">
-                                                            <div class="grid grid--form">
-                                                                <div class="grid__item l-full"> </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="s-08f00be4-e896-421d-8bb1-d94d52753e0a" class="shg-c">
-                                    <div data-col-grid-mode-on="" class="shg-row" style="justify-content : center">
-                                        <div class="shg-c-lg-7 shg-c-md-7 shg-c-sm-7 shg-c-xs-12">
-                                            <div class="shg-c" id="s-6bc1c335-5c70-457e-a2e1-9f45402c401e">
+                    @endif
 
-                                                <form action="{{ route('login') }}" method="POST"
-                                                    class="shogun-form-box">
-                                                    @csrf
-
-                                                    {{-- Success / Error Messages --}}
-                                                    @if(session('success'))
-                                                    <div class="alert alert-success"
-                                                        style="text-align:center; margin-bottom:15px;">
-                                                        {{ session('success') }}
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                          
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $err)
+                                    <li>{{ $err }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('login') }}" method="POST">
+                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}" autocomplete="off">--}}
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" value=""
+                                placeholder="Enter your email" required autocomplete="off" style="border-radius:0.25rem;">
                                                     </div>
-                                                    @endif
-
-                                                    @if(session('error'))
-                                                    <div class="alert alert-danger"
-                                                        style="text-align:center; margin-bottom:15px; color:red">
-                                                        {{ session('error') }}
-                                                    </div>
-                                                    @endif
-
-                                                    {{-- Validation Errors --}}
-                                                    @if($errors->any())
-                                                    <div class="alert alert-danger"
-                                                        style="text-align:center; margin-bottom:15px;">
-                                                        <ul style="list-style:none; padding:0; margin:0; color:red">
-                                                            @foreach($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                    @endif
-                                                    <div class="shg-c shg-align-left"
-                                                        id="s-72436feb-71f7-44b5-a673-44f1930b1f62">
-                                                        <div class="shogun-heading-component">
-                                                            <h6> Login <br></h6>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="shg-c" id="s-dc9ea0ca-7c9c-4c28-9b70-2fff5973c5b9">
-                                                        <div data-field-type="text" class="shogun-form-text-input">
-                                                            <label class="shogun-form-label">Email*</label>
-                                                            <input required="true" type="text" placeholder=""
-                                                                name="email"
-                                                                class="shogun-form-box-field shogun-form-text-input-field"
-                                                                id="input-s-dc9ea0ca-7c9c-4c28-9b70-2fff5973c5b9">
-                                                        </div>
-                                                    </div>
-                                                    <div class="shg-c" id="s-e600608c-eace-4c4c-890c-64634af80229">
-                                                        <div data-field-type="email" class="shogun-form-text-input">
-                                                            <label class="shogun-form-label">Password*</label>
-                                                            <input required="true" type="password" placeholder=""
-                                                                name="password"
-                                                                class="shogun-form-box-field shogun-form-text-input-field"
-                                                                id="input-s-e600608c-eace-4c4c-890c-64634af80229">
-                                                        </div>
-                                                    </div>
-                                                    <div class="shg-c shg-btn-wrapper shg-align-center"
-                                                        id="s-281b7ca0-1965-4841-8395-831f9945364a-btn-wrapper"><button
-                                                            type="submit" class="shg-btn shg-cse shogun-form-box-submit"
-                                                            id="s-281b7ca0-1965-4841-8395-831f9945364a">Sign In
-                                                        </button></div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            @error('email')
+                                <span class="text-danger small">{{ $message }}</span>
+                            @enderror
+                        <div class="form-group mb-3">
+                            <label class="d-flex justify-content-between" for="passwordID">
+                                <span>Password</span>
+                                <a href="#" class="small">Forgot password?</a>
+                            </label>
+                            <div class="position-relative">
+                                <input type="password" name="password" id="passwordID" class="form-control"
+                                    placeholder="Enter new password" required style="border-radius:0.25rem;">
+                                <i class="fas fa-eye position-absolute" id="passwordIcon"
+                                    style="right: 10px; top: 50%; transform: translateY(-50%); cursor:pointer; color:#6c757d;"
+                                    onclick="togglePassword('passwordID', 'passwordIcon')"
+                                    onmouseover="this.style.color='#007bff'" onmouseout="this.style.color='#6c757d'"></i>
+                            
+                              @error('password')
+                                  <span class="text-danger small">{{ $message }}</span>
+                              @enderror
                             </div>
-                        </div>
-                    </div>
+                                                      <!-- remember start  -->
+                          <div class="form-check">
+                              <input type="checkbox" class="form-check-input" name="remember" id="remember">
+                              <label class="form-check-label" for="remember">
+                                  Remember Me
+                              </label>
+                          </div>
+
+                          <!-- remember end -->
+                          </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mb-3" style="border-radius:0.25rem;">Sign
+                            In</button>
+
+                        {{--<div class="text-center">
+                            <span>Don't have an account? </span>
+                            <a href="{{ route('register') }}">Sign Up</a>
+                        </div>--}}
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</main>
-<script type="text/javascript"
-    src="{{ asset('frontend/js/global-assets-fbc1b7763a9df86edf4082364e848f5effb850d3.js') }}" defer></script>
-@endsection
+    </div>
+    <script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/moment/moment.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script
+    src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/dist/js/pages/dashboard.js"></script>
+<!-- Select2 -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/select2/js/select2.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/select2/js/select2.full.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/jszip/jszip.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- toastr -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/toastr/toastr.min.js"></script>
+<!-- sweetalert2 -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- custom scripts -->
+<script src="{{ asset('frontend/login-data/login/assets') }}/backend/dist/js/custom.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            
+            
+                    });
+    </script>
+</body>
+
+</html>
