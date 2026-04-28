@@ -1,6 +1,6 @@
 @extends('website.test.test_include.test_app')
 
-@section('title', 'Test Header')
+@section('title', 'Home - '. env('APP_NAME'))
 @section('meta_description', 'This is a test header page for City Builders.')
 @section('meta_keywords', 'test header, City Builders, tile manufacturer')
 @section('content')
