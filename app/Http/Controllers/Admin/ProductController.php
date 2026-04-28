@@ -83,6 +83,7 @@ class ProductController extends Controller
         $category->name_bn      = $request->name_bn ?? null;
         $category->slug         = getSlug($request->slug, $category, true);
         $category->excerpt      = $request->excerpt;
+        $category->position     = $request->position ?? 0;
         $category->active       = $request->boolean('active');
         $category->addedby_id   = Auth::id();
 
@@ -146,6 +147,7 @@ class ProductController extends Controller
         $category->name_bn = $request->name_bn;
         $category->slug = getSlug($request->slug, $category, true);
         $category->excerpt = $request->excerpt;
+        $category->position     = $request->position ?? 0;
         $category->active = $request->boolean('active');
         $category->editedby_id = Auth::id();
 

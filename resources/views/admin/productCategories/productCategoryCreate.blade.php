@@ -95,6 +95,13 @@
                                 <textarea name="excerpt" id="excerpt" rows="2" class="form-control" placeholder="Short description...">{{ old('excerpt') }}</textarea>
                             </div>
                         </div>
+                        <!-- Position -->
+                        <div class="form-group row">
+                            <label for="position" class="col-sm-3 col-form-label text-left">Position</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="position" id="position" class="form-control" placeholder="Position..." value="{{ old('position') }}">
+                            </div>
+                        </div>
 
                         <!-- Image -->
                         <div class="form-group row">

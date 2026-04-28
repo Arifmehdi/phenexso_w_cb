@@ -17,6 +17,15 @@ class ProductController extends Controller
     {
         $query = Product::whereActive(true);
 
+        // Search logic
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where(function($q) use ($search) {
+                $q->where('name_en', 'LIKE', "%{$search}%")
+                  ->orWhere('name_bn', 'LIKE', "%{$search}%");
+            });
+        }
+
         // Sorting
         if ($request->get('sort') == 1) {
             $query->latest();

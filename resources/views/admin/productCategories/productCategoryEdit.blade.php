@@ -58,43 +58,64 @@
                             @enderror
                         </div>
 
-<div class="form-group ">
-    <label for="parent_id">
-        Parent Category (Optional)
-    </label>
-    <div >
-        <select name="parent_id" id="parent_id" class="form-control">
-            <option value="">-- None (Main Category) --</option>
-            @foreach($categories as $cat)
-                @if($cat->parent_id === null && $cat->id != $category->id)
-                    <option value="{{ $cat->id }}" 
-                        {{ old('parent_id', $category->parent_id) == $cat->id ? 'selected' : '' }}>
-                        {{ $cat->name_en }}
-                    </option>
-                    
-                    {{-- Subcategories --}}
-                    @foreach($cat->children as $child)
-                        @if($child->id != $category->id)
-                            <option value="{{ $child->id }}" 
-                                {{ old('parent_id', $category->parent_id) == $child->id ? 'selected' : '' }}>
-                                &nbsp;&nbsp;├─ {{ $child->name_en }}
-                            </option>
-                        @endif
-                    @endforeach
-                @endif
-            @endforeach
-        </select>
-        @error('parent_id') 
-            <span class="text-danger">{{ $message }}</span> 
-        @enderror
-    </div>
-</div>
+                        <div class="form-group ">
+                            <label for="parent_id">
+                                Parent Category (Optional)
+                            </label>
+                            <div >
+                                <select name="parent_id" id="parent_id" class="form-control">
+                                    <option value="">-- None (Main Category) --</option>
+                                    @foreach($categories as $cat)
+                                        @if($cat->parent_id === null && $cat->id != $category->id)
+                                            <option value="{{ $cat->id }}" 
+                                                {{ old('parent_id', $category->parent_id) == $cat->id ? 'selected' : '' }}>
+                                                {{ $cat->name_en }}
+                                            </option>
+                                            
+                                            {{-- Subcategories --}}
+                                            @foreach($cat->children as $child)
+                                                @if($child->id != $category->id)
+                                                    <option value="{{ $child->id }}" 
+                                                        {{ old('parent_id', $category->parent_id) == $child->id ? 'selected' : '' }}>
+                                                        &nbsp;&nbsp;├─ {{ $child->name_en }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('parent_id') 
+                                    <span class="text-danger">{{ $message }}</span> 
+                                @enderror
+                            </div>
+                        </div>
 
                         {{-- Excerpt --}}
                         <div class="form-group">
                             <label for="excerpt">Excerpt</label>
                             <textarea name="excerpt" id="excerpt" rows="3" class="form-control" placeholder="Short description">{{ old('excerpt', $category->excerpt) }}</textarea>
                         </div>
+
+
+                        {{--Position  --}}
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="number" name="position" id="position" class="form-control" placeholder="Position..." value="{{ old('position', $category->position) }}">
+                            @error('position')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Category Name (Bangla)  --}}
+                        <div class="form-group">
+                            <label for="name_bn">Category Name (Bangla) <span class="text-danger">*</span></label>
+                            <input type="text" name="name_bn" id="name_bn" value="{{ old('name_bn', $category->name_bn) }}" 
+                                class="form-control @error('name_bn') is-invalid @enderror" placeholder="Enter Category Name (Bangla)" >
+                            @error('name_bn')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                       
 
                         {{-- Current Image --}}
                         <div class="form-group">

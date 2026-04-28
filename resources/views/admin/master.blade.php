@@ -131,7 +131,7 @@
                         <a href="Javascript:void()" class="nav-link {{ session('lsbm') == 'dashboardM'? ' active ' : ''}}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                DashBoard
+                                Dashboard
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -199,7 +199,7 @@
 
                     <li class="nav-item {{ session('lsbm') == 'slider'? ' menu-open ' : ''}}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'slider'? ' active ' : ''}}">
-                            <i class="nav-icon fas fa-search-location"></i>
+                            <i class="nav-icon fas fa-photo-video"></i>
                             <p>
                                 Sliders
                                 <i class="fas fa-angle-left right"></i>
@@ -220,7 +220,7 @@
 
                     <li class="nav-item {{ session('lsbm') == 'menupage' ? ' menu-open ' : ''}}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'menupage' ? ' active ' : ''}}">
-                            <i class="nav-icon fas fa-bezier-curve"></i>
+                            <i class="nav-icon fas fa-bars"></i>
                             <p>
                                 Menus & Pages
                                 <i class="fas fa-angle-left right"></i>
@@ -350,14 +350,14 @@
                     </li>--}}
 
 
-                    <li class="nav-item {{ session('lsbm') == 'mediaM'? ' menu-open ' : ''}}">
-                        <a href="#" class="nav-link {{ session('lsbm') == 'mediaM'? ' active ' : ''}}">
-                            <i class="nav-icon fas fa-pager"></i>
-                            <p>
-                                Media
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
+<li class="nav-item {{ session('lsbm') == 'mediaM'? ' menu-open ' : ''}}">
+                         <a href="#" class="nav-link {{ session('lsbm') == 'mediaM'? ' active ' : ''}}">
+                             <i class="nav-icon fas fa-photo-video"></i>
+                             <p>
+                                 Media
+                                 <i class="fas fa-angle-left right"></i>
+                             </p>
+                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('medias.index') }}" class="nav-link {{ session('lsbsm') == 'mediaSM'? ' active ' : ''}}">
@@ -437,7 +437,7 @@
 
                     <li class="nav-item {{ session('lsbm') == 'galleries' ? ' menu-open ' : '' }}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'galleries' ? ' active ' : '' }}">
-                            <i class="nav-icon fas fas fa-bell"></i>
+                            <i class="nav-icon fas fa-image"></i>
                             <p>
                                 Galleries
                                 <i class="right fas fa-angle-left"></i>
@@ -464,7 +464,7 @@
 
                     <li class="nav-item {{ session('lsbm') == 'testimonials' ? ' menu-open ' : ''}}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'testimonials' ? ' active ' : ''}}">
-                            <i class="nav-icon fas fa-quote-right"></i>
+                            <i class="nav-icon fas fa-comments"></i>
                             <p>
                                 Testimonials
                                 <i class="fas fa-angle-left right"></i>
@@ -509,7 +509,7 @@
                     {{-- Products --}}
                     <li class="nav-item {{ session('lsbm') == 'product'? ' menu-open ' : ''}}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'product'? ' active ' : ''}}">
-                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <i class="nav-icon fas fa-box"></i>
                             <p>
                                 Products
                                 <i class="fas fa-angle-left right"></i>
@@ -536,7 +536,7 @@
                         {{-- Orders --}}
                     <li class="nav-item {{ session('lsbm') == 'order' ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'order' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-shopping-bag"></i>
+                            <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>
                             Orders
                             <i class="right fas fa-angle-left"></i>
@@ -554,7 +554,7 @@
 
                    <li class="nav-item {{ session('lsbm') == 'shipping' ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'shipping' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-shopping-bag"></i>
+                            <i class="nav-icon fas fa-truck"></i>
                             <p>
                             Shipping Method
                             <i class="right fas fa-angle-left"></i>
@@ -574,7 +574,7 @@
                     {{-- Contact Messages --}}
                     <li class="nav-item {{ session('lsbm') == 'contacts' ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'contacts' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-shopping-bag"></i>
+                            <i class="nav-icon fas fa-envelope"></i>
                             <p>
                             Contact
                             <i class="right fas fa-angle-left"></i>
@@ -592,9 +592,9 @@
                     
                     <li class="nav-item {{ session('lsbm') == 'websiteparam'? ' menu-open ' : ''}}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'websiteparam'? ' active ' : ''}}">
-                            <i class="nav-icon fas fa-desktop"></i>
+                            <i class="nav-icon fas fa-cog"></i>
                             <p>
-                                 Website Settings
+                                 Settings
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -804,6 +804,19 @@
 </script>
 
 @stack('js')
+
+<script>
+    $(function() {
+        // Initialize AdminLTE
+        $.AdminLTE.init();
+
+        // Initialize sidebar
+        $('.sidebar').AdminLTESidebar();
+
+        // Initialize push menu
+        $('[data-widget="pushmenu"]').PushMenu();
+    });
+</script>
 </body>
 
 </html>

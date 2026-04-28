@@ -22,7 +22,7 @@
 <!-- Category Grid -->
 <section class="category-section">
     <div class="container">
-        <h2 class="section-title">Find your perfect tiles</h2>
+        <h2 class="section-title">Find your perfect products</h2>
         <div class="category-grid">
             @forelse($categories as $category)
             <a href="{{ route('productCategory', $category->slug) }}" class="category-card">
@@ -254,7 +254,7 @@
 <style>
 
 </style>
-<section class="testimonials-section">
+{{--<section class="testimonials-section">
     <div class="container">
         <h2 class="section-title">Our Client Reviews</h2>
 
@@ -328,5 +328,5 @@
             </div>
         </div>
     </div>
-</section>
+</section>--}}
 @endsection
