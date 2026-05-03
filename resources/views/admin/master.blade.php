@@ -486,6 +486,30 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item {{ session('lsbm') == 'team' ? ' menu-open ' : ''}}">
+                        <a href="#" class="nav-link {{ session('lsbm') == 'team' ? ' active ' : ''}}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Team Management
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('team.index') }}" class="nav-link {{ session('lsbsm') == 'teamAll' ? ' active ' : ''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Members</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('team.create') }}" class="nav-link {{ session('lsbsm') == 'createTeam' ? ' active ' : ''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Member</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     {{--<li class="nav-item {{ session('lsbm') == 'appointments'? ' menu-open ' : ''}}">
                         <a href="#" class="nav-link {{ session('lsbm') == 'appointments'? ' active ' : ''}}">
                             <i class="nav-icon fas fa-pager"></i>

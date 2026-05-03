@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirmationEmail;
 use App\Models\Testimonial;
+use App\Models\TeamMember;
 
 class FrontendController extends Controller
 {
@@ -73,7 +74,8 @@ class FrontendController extends Controller
 
     public function test_about()
     {
-        return view('website.test.about');
+        $teamMembers = TeamMember::where('status', true)->orderBy('order')->get();
+        return view('website.test.about', compact('teamMembers'));
     }
 
     public function test_contact()

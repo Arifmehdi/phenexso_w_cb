@@ -123,6 +123,64 @@
                         .search-box.active {
                             display: flex;
                         }
+
+                        /* Hide YouTube and Instagram icons on mobile */
+                        .header-social-icons a:nth-child(2),
+                        .header-social-icons a:nth-child(3) {
+                            display: none;
+                        }
+                    }
+
+                    /* Category Images & 3-Layer Hover Effects */
+                    .nav-cat-img {
+                        width: 22px;
+                        height: 22px;
+                        object-fit: cover;
+                        border-radius: 4px;
+                        margin-right: 8px;
+                        vertical-align: middle;
+                        display: inline-block;
+                    }
+                    .menu-cat-img {
+                        width: 28px;
+                        height: 28px;
+                        object-fit: cover;
+                        border-radius: 4px;
+                        margin-right: 10px;
+                        vertical-align: middle;
+                        display: inline-block;
+                    }
+                    .menu-child-img {
+                        width: 20px;
+                        height: 20px;
+                        object-fit: cover;
+                        border-radius: 3px;
+                        margin-right: 8px;
+                        vertical-align: middle;
+                        display: inline-block;
+                    }
+                    .level2-wrapper {
+                        margin-bottom: 18px;
+                        transition: all 0.3s ease;
+                    }
+                    .level2-header {
+                        margin-bottom: 8px !important;
+                        border-bottom: 1px solid #f0f0f0;
+                        padding-bottom: 6px;
+                    }
+                    .level3-list {
+                        display: none; /* Hide by default */
+                        list-style: none;
+                        padding-left: 38px;
+                        margin-top: 5px;
+                        animation: fadeIn 0.3s ease forwards;
+                    }
+                    .level2-wrapper:hover .level3-list {
+                        display: block; /* Show on hover */
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(-5px); }
+                        to { opacity: 1; transform: translateY(0); }
                     }
                 </style>
 
@@ -213,7 +271,7 @@
                         ->chunk(10);
                 @endphp
 
-                <li class="has-dropdown">
+                {{--<li class="has-dropdown">
                     <a href="{{ route('shop') }}">{{ __('Shop') }}</a>
                     <div class="mega-menu" role="region">
                         <div class="mega-menu-container">
@@ -262,7 +320,7 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li>--}}
 
                 {{-- Loop through Parent Categories for 3-Layer Mega Menu --}}
                 @foreach($parentCategories as $category)
@@ -289,6 +347,11 @@
 
                     <li class="has-dropdown">
                         <a href="{{ route('productCategory', $category->slug) }}">
+                            @if($category->image)
+                                <img src="{{ route('imagecache', ['template' => 'original', 'filename' => $category->image]) }}" 
+                                     alt="{{ $category->{'name_' . app()->getLocale()} }}" 
+                                     class="nav-cat-img">
+                            @endif
                             {{ $category->{'name_' . app()->getLocale()} }}
                         </a>
 
@@ -307,33 +370,45 @@
                                         @foreach($level2Chunks as $chunk)
                                             <div class="mega-menu-col">
                                                 @foreach($chunk as $level2)
-                                                    {{-- Level 2 Category Header --}}
-                                                    <h4>
-                                                        <a href="{{ route('productCategory', $level2->slug) }}" class="level2-link">
-                                                            {{ $level2->{'name_' . app()->getLocale()} }}
-                                                        </a>
-                                                    </h4>
-                                                    
-                                                    {{-- Level 3 Subcategories (if exist) --}}
-                                                    @php
-                                                        $level3Categories = \App\Models\ProductCategory::where('parent_id', $level2->id)
-                                                            ->where('active', 1)
-                                                            ->orderBy('position', 'asc')
-                                                            ->orderBy('name_' . app()->getLocale())
-                                                            ->get();
-                                                    @endphp
-                                                    
-                                                    @if($level3Categories->count() > 0)
-                                                        <ul class="level3-list">
-                                                            @foreach($level3Categories as $level3)
-                                                                <li>
-                                                                    <a href="{{ route('productCategory', $level3->slug) }}" class="level3-link">
-                                                                        {{ $level3->{'name_' . app()->getLocale()} }}
-                                                                    </a>
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
-                                                    @endif
+                                                    <div class="level2-wrapper">
+                                                        {{-- Level 2 Category Header --}}
+                                                        <h4 class="level2-header">
+                                                            <a href="{{ route('productCategory', $level2->slug) }}" class="level2-link">
+                                                                @if($level2->image)
+                                                                    <img src="{{ route('imagecache', ['template' => 'original', 'filename' => $level2->image]) }}" 
+                                                                         alt="{{ $level2->{'name_' . app()->getLocale()} }}" 
+                                                                         class="menu-cat-img">
+                                                                @endif
+                                                                {{ $level2->{'name_' . app()->getLocale()} }}
+                                                            </a>
+                                                        </h4>
+                                                        
+                                                        {{-- Level 3 Subcategories (if exist) --}}
+                                                        @php
+                                                            $level3Categories = \App\Models\ProductCategory::where('parent_id', $level2->id)
+                                                                ->where('active', 1)
+                                                                ->orderBy('position', 'asc')
+                                                                ->orderBy('name_' . app()->getLocale())
+                                                                ->get();
+                                                        @endphp
+                                                        
+                                                        @if($level3Categories->count() > 0)
+                                                            <ul class="level3-list">
+                                                                @foreach($level3Categories as $level3)
+                                                                    <li>
+                                                                        <a href="{{ route('productCategory', $level3->slug) }}" class="level3-link">
+                                                                            @if($level3->image)
+                                                                                <img src="{{ route('imagecache', ['template' => 'original', 'filename' => $level3->image]) }}" 
+                                                                                     alt="{{ $level3->{'name_' . app()->getLocale()} }}" 
+                                                                                     class="menu-child-img">
+                                                                            @endif
+                                                                            {{ $level3->{'name_' . app()->getLocale()} }}
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         @endforeach

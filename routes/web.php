@@ -466,6 +466,9 @@ Route::middleware(['userRole:admin','auth'])->prefix('admin')->group(function(){
     
     // Testimonials
     Route::resource('testimonials', AdminTestimonialController::class);
+
+    // Team Members
+    Route::resource('team', \App\Http\Controllers\Admin\AdminTeamMemberController::class);
     
     Route::post('/categories/active',[CategoriesController::class,'DoctorActive'])->name('doctor.active');
    
