@@ -23,16 +23,16 @@ use App\Http\Controllers\Frontend\ProductController;
 Route::get('/', [FrontendController::class, 'test_home'])->name('test_home');
 Route::get('/about', [FrontendController::class, 'test_about'])->name('test_about');
 Route::get('/contact', [FrontendController::class, 'test_contact'])->name('test_contact');
-Route::get('/shop', [FrontendController::class, 'test_shop'])->name('test_shop');
+Route::get('/old_shop', [FrontendController::class, 'test_shop'])->name('test_shop');
 Route::get('/shop_detail', [FrontendController::class, 'test_shop_detail'])->name('test_shop_detail');
-Route::get('/checkout', [FrontendController::class, 'test_checkout'])->name('test_checkout');
+Route::get('/old_checkout', [FrontendController::class, 'test_checkout'])->name('test_checkout');
 // Route::get('/test_shop_detail/{?id}', [FrontendController::class, 'test_shop_detail'])->name('test_shop_detail');
 
 // ecommerce product 
-Route::get('/old-shop', [ProductController::class, 'product'])->name('shop');
+Route::get('/shop', [ProductController::class, 'product'])->name('shop');
 Route::get('product-category/{slug?}', [ProductController::class, 'productCategory'])->name('productCategory');
 Route::get('product/details/{slug}',[ProductController::class, 'productDetails'])->name('productDetails');
-Route::get('old-checkout',[ProductController::class, 'checkout'])->name('new.checkout');
+Route::get('checkout',[ProductController::class, 'checkout'])->name('new.checkout');
 
 // musafir international frontend routes start here
 // Route::get('/', [HomeController::class, 'home'])->name('home');

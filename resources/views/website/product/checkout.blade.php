@@ -4,74 +4,128 @@
 
 @push('styles')
 <style>
-    /* 
-       IMPORTANT: Using !important on layout-critical styles to ensure 
-       they show up even if the base layout has strong resets.
-    */
+    :root {
+        --cb-primary: #e8362a;
+        --cb-primary-hover: #d12e23;
+        --cb-bg: #f8fafc;
+        --cb-card-bg: #ffffff;
+        --cb-text-main: #1e293b;
+        --cb-text-muted: #64748b;
+        --cb-border: #e2e8f0;
+        --cb-radius: 12px;
+        --cb-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --cb-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
     #cb-checkout-wrapper {
-        padding: 60px 0 !important;
-        background-color: #fbf7f3 !important;
-        min-height: 80vh !important;
-        display: block !important;
-        width: 100% !important;
+        padding: 40px 0 80px !important;
+        background-color: var(--cb-bg) !important;
+        min-height: 100vh !important;
+        font-family: 'Poppins', sans-serif !important;
+        color: var(--cb-text-main) !important;
     }
 
     .cb-container {
-        max-width: 1200px !important;
+        max-width: 1140px !important;
         margin: 0 auto !important;
-        padding: 0 15px !important;
+        padding: 0 20px !important;
+    }
+
+    .checkout-header {
+        margin-bottom: 40px !important;
+        text-align: left !important;
+    }
+
+    .checkout-header h1 {
+        font-weight: 800 !important;
+        font-size: 32px !important;
+        margin-bottom: 8px !important;
+        color: var(--cb-text-main) !important;
+    }
+
+    .checkout-header p {
+        color: var(--cb-text-muted) !important;
+        font-size: 16px !important;
     }
 
     .cb-row {
         display: flex !important;
         flex-wrap: wrap !important;
-        margin: 0 -15px !important;
+        margin: 0 -12px !important;
     }
 
-    .cb-col-7 {
-        flex: 0 0 58.333333% !important;
-        max-width: 58.333333% !important;
-        padding: 0 15px !important;
+    .cb-col-left {
+        flex: 0 0 58% !important;
+        max-width: 58% !important;
+        padding: 0 12px !important;
     }
 
-    .cb-col-5 {
-        flex: 0 0 41.666667% !important;
-        max-width: 41.666667% !important;
-        padding: 0 15px !important;
+    .cb-col-right {
+        flex: 0 0 42% !important;
+        max-width: 42% !important;
+        padding: 0 12px !important;
     }
 
     @media (max-width: 991px) {
-        .cb-col-7, .cb-col-5 {
+        .cb-col-left, .cb-col-right {
             flex: 0 0 100% !important;
             max-width: 100% !important;
+        }
+        .cb-col-right {
+            margin-top: 30px !important;
         }
     }
 
     .cb-card {
-        background: #ffffff !important;
-        border: 1px solid #e5e5e5 !important;
-        border-radius: 12px !important;
-        margin-bottom: 30px !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
-        overflow: hidden !important;
+        background: var(--cb-card-bg) !important;
+        border: 1px solid var(--cb-border) !important;
+        border-radius: var(--cb-radius) !important;
+        margin-bottom: 24px !important;
+        box-shadow: var(--cb-shadow) !important;
+        transition: box-shadow 0.3s ease !important;
+    }
+
+    .cb-card:hover {
+        box-shadow: var(--cb-shadow-lg) !important;
     }
 
     .cb-card-header {
-        background: #212a2f !important;
-        color: #ffffff !important;
-        padding: 18px 25px !important;
-        font-weight: 600 !important;
-        font-size: 18px !important;
+        padding: 20px 24px !important;
+        border-bottom: 1px solid var(--cb-border) !important;
         display: flex !important;
         align-items: center !important;
         gap: 12px !important;
     }
 
-    /* .cb-card-body {
-        padding: 30px !important;
-    } */
+    .cb-card-header h2 {
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        margin: 0 !important;
+        color: var(--cb-text-main) !important;
+    }
 
-    /* Form Styling */
+    .cb-card-header i {
+        color: var(--cb-primary) !important;
+        font-size: 20px !important;
+    }
+
+    .cb-card-body {
+        padding: 24px !important;
+    }
+
+    /* Form Elements */
+    .form-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 20px !important;
+    }
+
+    @media (max-width: 575px) {
+        .form-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+
     .cb-form-group {
         margin-bottom: 20px !important;
     }
@@ -79,72 +133,74 @@
     .cb-label {
         display: block !important;
         font-size: 14px !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         margin-bottom: 8px !important;
-        color: #444 !important;
+        color: var(--cb-text-main) !important;
     }
 
     .cb-input, .cb-select, .cb-textarea {
         width: 100% !important;
-        height: 48px !important;
-        padding: 10px 15px !important;
-        border: 1px solid #ddd !important;
+        padding: 12px 16px !important;
+        border: 1.5px solid var(--cb-border) !important;
         border-radius: 8px !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
         background: #fff !important;
-        transition: all 0.3s !important;
-        box-sizing: border-box !important;
-        display: block !important;
+        transition: all 0.2s ease !important;
+        color: var(--cb-text-main) !important;
     }
 
-    .cb-textarea {
-        height: auto !important;
-    }
-
-    .cb-input:focus, .cb-select:focus {
-        border-color: #e8362a !important;
+    .cb-input:focus, .cb-select:focus, .cb-textarea:focus {
+        border-color: var(--cb-primary) !important;
         outline: none !important;
-        box-shadow: 0 0 0 3px rgba(232, 54, 42, 0.1) !important;
+        box-shadow: 0 0 0 4px rgba(232, 54, 42, 0.1) !important;
     }
 
-    /* Payment List */
-    .cb-payment-list {
-        list-style: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
+    /* Payment Methods */
+    .payment-options {
+        display: grid !important;
+        gap: 16px !important;
     }
 
     .cb-payment-item {
-        border: 1px solid #eee !important;
-        border-radius: 10px !important;
-        margin-bottom: 12px !important;
+        border: 2px solid var(--cb-border) !important;
+        border-radius: var(--cb-radius) !important;
+        padding: 20px !important;
         cursor: pointer !important;
-        transition: all 0.3s !important;
+        transition: all 0.2s ease !important;
+        position: relative !important;
     }
 
     .cb-payment-item:hover {
-        border-color: #e8362a !important;
+        border-color: var(--cb-primary) !important;
+        background-color: rgba(232, 54, 42, 0.02) !important;
     }
 
     .cb-payment-item.active {
-        border-color: #e8362a !important;
-        background-color: #fff9f9 !important;
+        border-color: var(--cb-primary) !important;
+        background-color: rgba(232, 54, 42, 0.05) !important;
     }
 
     .cb-payment-label {
-        padding: 15px 20px !important;
         display: flex !important;
         align-items: center !important;
-        gap: 12px !important;
-        font-weight: 600 !important;
-        width: 100% !important;
+        gap: 15px !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        margin: 0 !important;
         cursor: pointer !important;
     }
 
+    .cb-payment-label input[type="radio"] {
+        accent-color: var(--cb-primary) !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+
     .cb-payment-info {
-        padding: 0 20px 15px 48px !important;
-        font-size: 13px !important;
-        color: #777 !important;
+        margin-top: 10px !important;
+        padding-left: 35px !important;
+        font-size: 14px !important;
+        color: var(--cb-text-muted) !important;
         display: none !important;
     }
 
@@ -152,135 +208,111 @@
         display: block !important;
     }
 
-    /* Summary Specifics */
-    .cb-summary-line {
-        display: flex !important;
-        justify-content: space-between !important;
+    /* Shipping Method */
+    #shipping-method-container {
+        margin-top: 24px !important;
+        padding: 20px !important;
+        background: #f1f5f9 !important;
+        border-radius: var(--cb-radius) !important;
+        border: 1.5px dashed var(--cb-border) !important;
+    }
+
+    .shipping-method-item {
         margin-bottom: 12px !important;
-        font-size: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 10px !important;
+        background: #fff !important;
+        border-radius: 8px !important;
+        border: 1px solid var(--cb-border) !important;
     }
 
-    .cb-summary-total {
-        border-top: 2px solid #eee !important;
-        margin-top: 15px !important;
-        padding-top: 15px !important;
-        font-weight: 700 !important;
-        font-size: 20px !important;
-        color: #e8362a !important;
-    }
-
-    /* Primary Button */
-    .cb-btn-main {
-        background: #e8362a !important;
-        color: #fff !important;
-        border: none !important;
-        width: 100% !important;
-        padding: 16px !important;
-        border-radius: 10px !important;
-        font-size: 16px !important;
-        font-weight: 700 !important;
-        cursor: pointer !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-        transition: background 0.3s !important;
-        margin-top: 20px !important;
-    }
-
-    .cb-btn-main:hover:not(:disabled) {
-        background: #d12e23 !important;
-    }
-
-    .cb-btn-main:disabled {
-        background: #ccc !important;
-        cursor: not-allowed !important;
-    }
-
-    /* Utilities */
-    .text-red { color: #e8362a !important; }
-    .mt-30 { margin-top: 30px !important; }
-    .sticky-side {
+    /* Sticky Sidebar */
+    .sticky-sidebar {
         position: sticky !important;
         top: 100px !important;
     }
 
-    /* Fix for "Your Order" broken layout (Bootstrap classes used in partial) */
-    .cart-action-wrapper table {
+    /* Buttons */
+    .cb-btn-primary {
+        background: var(--cb-primary) !important;
+        color: #fff !important;
+        border: none !important;
         width: 100% !important;
-        border-collapse: collapse !important;
-        margin-bottom: 0 !important;
+        padding: 18px !important;
+        border-radius: var(--cb-radius) !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 6px rgba(232, 54, 42, 0.2) !important;
     }
 
-    .cart-action-wrapper th {
-        background: #f8f9fa !important;
-        padding: 12px 10px !important;
-        text-align: left !important;
+    .cb-btn-primary:hover:not(:disabled) {
+        background: var(--cb-primary-hover) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 12px rgba(232, 54, 42, 0.3) !important;
+    }
+
+    .cb-btn-primary:disabled {
+        background: #cbd5e1 !important;
+        box-shadow: none !important;
+        cursor: not-allowed !important;
+    }
+
+    /* Terms */
+    .terms-box {
+        margin: 20px 0 !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        background: rgba(0,0,0,0.02) !important;
+    }
+
+    .terms-label {
+        display: flex !important;
+        gap: 12px !important;
+        align-items: flex-start !important;
         font-size: 13px !important;
-        color: #212a2f !important;
-        border-bottom: 2px solid #eee !important;
-    }
-
-    .cart-action-wrapper td {
-        padding: 15px 10px !important;
-        border-bottom: 1px solid #eee !important;
-        vertical-align: middle !important;
-        font-size: 14px !important;
-    }
-
-    .cart-action-wrapper .img-thumbnail {
-        border-radius: 6px !important;
-        border: 1px solid #eee !important;
-        padding: 2px !important;
-    }
-
-    .cart-action-wrapper .btn-sm {
-        padding: 4px 8px !important;
-        font-size: 12px !important;
-        border-radius: 4px !important;
+        line-height: 1.5 !important;
+        color: var(--cb-text-muted) !important;
         cursor: pointer !important;
     }
 
-    .cart-action-wrapper .btn-danger {
-        background: #ff4d4d !important;
-        color: #fff !important;
-        border: none !important;
+    .terms-label input {
+        margin-top: 3px !important;
+        accent-color: var(--cb-primary) !important;
     }
 
-    .cart-action-wrapper .btn-dark {
-        background: #212a2f !important;
-        color: #fff !important;
-        border: none !important;
+    .terms-label a {
+        color: var(--cb-primary) !important;
+        text-decoration: underline !important;
+        font-weight: 600 !important;
     }
 
-    /* Bootstrap-like Utility Shims for the partial */
-    .d-flex { display: flex !important; }
-    .align-items-center { align-items: center !important; }
-    .justify-content-between { justify-content: space-between !important; }
-    .gap-2 { gap: 8px !important; }
-    .text-white { color: #fff !important; }
-    .text-success { color: #28a745 !important; }
-    .text-danger { color: #e8362a !important; }
-    .text-primary { color: #007bff !important; }
-    .text-muted { color: #6c757d !important; }
-    .text-end { text-align: right !important; }
-    .text-center { text-align: center !important; }
-    .fw-bold { font-weight: 700 !important; }
-    .fw-semibold { font-weight: 600 !important; }
-    .p-3 { padding: 16px !important; }
-    .py-2 { padding-top: 8px !important; padding-bottom: 8px !important; }
-    .px-3 { padding-left: 16px !important; padding-right: 16px !important; }
-    .mb-0 { margin-bottom: 0 !important; }
-    .mb-3 { margin-bottom: 16px !important; }
-    .mt-2 { margin-top: 8px !important; }
-    .bg-dark { background-color: #212a2f !important; }
-    .bg-white { background-color: #fff !important; }
-    .border-top { border-top: 1px solid #dee2e6 !important; }
-    .rounded { border-radius: 8px !important; }
-    .ms-2 { margin-left: 8px !important; }
-    .badge {
-        display: inline-block !important;
-        padding: 4px 8px !important;
-        border-radius: 4px !important;
-        font-size: 12px !important;
+    /* Cart Summary Overrides */
+    .cart-action-wrapper table {
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+
+    .cart-action-wrapper th {
+        background: #f8fafc !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        font-size: 11px !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .empty-cart-state {
+        text-align: center !important;
+        padding: 80px 40px !important;
+    }
+
+    .empty-cart-state i {
+        font-size: 64px !important;
+        color: #e2e8f0 !important;
+        margin-bottom: 24px !important;
     }
 </style>
 @endpush
@@ -294,79 +326,78 @@
 
 <div id="cb-checkout-wrapper">
     <div class="cb-container">
-        <h1 style="margin-bottom: 40px; font-weight: 800; font-size: 36px;">{{ __('Complete Your Order') }}</h1>
+        <div class="checkout-header">
+            <h1>{{ __('Checkout') }}</h1>
+            <p>{{ __('Please enter your details to complete the purchase.') }}</p>
+        </div>
 
         @if($cartItems->isEmpty())
             <div class="cb-card">
-                <div class="cb-card-body" style="text-align: center; padding: 80px 20px;">
-                    <h2 style="margin-bottom: 20px;">Your cart is empty</h2>
-                    <p style="color: #666; margin-bottom: 30px;">Add some products to your cart before checking out.</p>
-                    <a href="{{ route('shop') }}" class="cb-btn-main" style="display: inline-block; width: auto; text-decoration: none; padding: 15px 40px;">Return to Shop</a>
+                <div class="cb-card-body">
+                    <div class="empty-cart-state">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2 style="font-weight: 700; margin-bottom: 12px;">Your cart is currently empty</h2>
+                        <p style="color: var(--cb-text-muted); margin-bottom: 30px;">Before you can proceed to checkout, you must add some products to your shopping cart.</p>
+                        <a href="{{ route('shop') }}" class="cb-btn-primary" style="display: inline-block; width: auto; text-decoration: none; padding: 15px 40px;">Return to Shop</a>
+                    </div>
                 </div>
             </div>
         @else
             <div class="cb-row">
                 <!-- Left Side: Forms -->
-                <div class="cb-col-7">
+                <div class="cb-col-left">
                     <!-- Delivery Info -->
                     <div class="cb-card">
                         <div class="cb-card-header">
-                            <i class="fas fa-truck"></i> {{ __('Shipping Information') }}
+                            <i class="fas fa-shipping-fast"></i>
+                            <h2>{{ __('Shipping Information') }}</h2>
                         </div>
                         <div class="cb-card-body">
                             <form id="shipping-info-form">
-                                <div class="cb-row">
-                                    <div class="cb-col-7" style="flex: 0 0 50%; max-width: 50%;">
-                                        <div class="cb-form-group">
-                                            <label class="cb-label">{{ __('Full Name') }} *</label>
-                                            <input type="text" class="cb-input" id="name" value="{{ $location ? $location->name : ($user ? $user->name : '') }}" required>
-                                        </div>
+                                <div class="form-grid">
+                                    <div class="cb-form-group">
+                                        <label class="cb-label">{{ __('Full Name') }} <span style="color:red">*</span></label>
+                                        <input type="text" class="cb-input" id="name" value="{{ $location ? $location->name : ($user ? $user->name : '') }}" placeholder="Enter your full name" required>
                                     </div>
-                                    <div class="cb-col-5" style="flex: 0 0 50%; max-width: 50%;">
-                                        <div class="cb-form-group">
-                                            <label class="cb-label">{{ __('Email Address') }} *</label>
-                                            <input type="email" class="cb-input" id="email" value="{{ $location ? $location->email : ($user ? $user->email : '') }}" required>
-                                        </div>
+                                    <div class="cb-form-group">
+                                        <label class="cb-label">{{ __('Email Address') }} <span style="color:red">*</span></label>
+                                        <input type="email" class="cb-input" id="email" value="{{ $location ? $location->email : ($user ? $user->email : '') }}" placeholder="example@domain.com" required>
                                     </div>
                                 </div>
 
-                                <div class="cb-row">
-                                    <div class="cb-col-7" style="flex: 0 0 50%; max-width: 50%;">
-                                        <div class="cb-form-group">
-                                            <label class="cb-label">{{ __('Phone Number') }} *</label>
-                                            <input type="tel" class="cb-input" id="mobile" value="{{ $location ? $location->mobile : ($user ? $user->mobile : '') }}" placeholder="01XXXXXXXXX" required>
-                                        </div>
+                                <div class="form-grid">
+                                    <div class="cb-form-group">
+                                        <label class="cb-label">{{ __('Phone Number') }} <span style="color:red">*</span></label>
+                                        <input type="tel" class="cb-input" id="mobile" value="{{ $location ? $location->mobile : ($user ? $user->mobile : '') }}" placeholder="01XXXXXXXXX" required>
                                     </div>
-                                    <div class="cb-col-5" style="flex: 0 0 50%; max-width: 50%;">
-                                        <div class="cb-form-group">
-                                            <label class="cb-label">{{ __('District') }} *</label>
-                                            <select class="cb-select" id="district" required>
-                                                <option selected disabled value="">{{ __('Select District') }}</option>
-                                                @foreach($districts as $district)
-                                                    <option value="{{ $district->id }}" {{ ($location && $location->district_id == $district->id) ? 'selected' : '' }}>
-                                                        {{ $district->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="cb-form-group">
+                                        <label class="cb-label">{{ __('District') }} <span style="color:red">*</span></label>
+                                        <select class="cb-select" id="district" required>
+                                            <option selected disabled value="">{{ __('Select District') }}</option>
+                                            @foreach($districts as $district)
+                                                <option value="{{ $district->id }}" {{ ($location && $location->district_id == $district->id) ? 'selected' : '' }}>
+                                                    {{ $district->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="cb-form-group">
-                                    <label class="cb-label">{{ __('Thana / Area') }} *</label>
+                                    <label class="cb-label">{{ __('Thana / Area') }} <span style="color:red">*</span></label>
                                     <select class="cb-select" id="thana" required>
                                         <option selected disabled value="">{{ __('Select District First') }}</option>
                                     </select>
                                 </div>
 
-                                <div class="cb-form-group">
-                                    <label class="cb-label">{{ __('Full Street Address') }} *</label>
-                                    <textarea class="cb-textarea" id="address" rows="3" required placeholder="House number, Street name, Landmark...">{{ $location ? $location->address_title : '' }}</textarea>
+                                <div class="cb-form-group" style="margin-bottom: 0;">
+                                    <label class="cb-label">{{ __('Full Street Address') }} <span style="color:red">*</span></label>
+                                    <textarea class="cb-textarea" id="address" rows="3" required placeholder="Flat/House No, Street name, Landmark...">{{ $location ? $location->address_title : '' }}</textarea>
                                 </div>
 
                                 <!-- Dynamic Shipping Methods Section -->
-                                <div id="shipping-method-container" style="display: none; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 1px dashed #ddd;">
-                                    <h4 style="font-size: 16px; margin-bottom: 15px; font-weight: 700;">{{ __('Select Shipping Method') }}</h4>
+                                <div id="shipping-method-container" style="display: none;">
+                                    <h4 style="font-size: 15px; margin-bottom: 15px; font-weight: 700;">{{ __('Choose Shipping Option') }}</h4>
                                     <div id="shipping-method-list">
                                         <!-- Populated via JS -->
                                     </div>
@@ -378,49 +409,56 @@
                     <!-- Payment Method -->
                     <div class="cb-card">
                         <div class="cb-card-header">
-                            <i class="fas fa-credit-card"></i> {{ __('Payment Method') }}
+                            <i class="fas fa-wallet"></i>
+                            <h2>{{ __('Payment Method') }}</h2>
                         </div>
                         <div class="cb-card-body">
                             <form id="orderForm" method="POST">
                                 @csrf
                                 <input type="hidden" name="shipping_price" id="shipping_val" value="0">
                                 
-                                <div class="cb-payment-list">
+                                <div class="payment-options">
                                     <div class="cb-payment-item" id="pay-cod-item">
                                         <label class="cb-payment-label">
                                             <input type="radio" name="payment_method" value="cod" class="payment-radio">
-                                            <span>{{ __('Cash on Delivery') }}</span>
+                                            <span class="d-flex align-items-center gap-2">
+                                                <i class="fas fa-money-bill-wave text-success"></i>
+                                                {{ __('Cash on Delivery') }}
+                                            </span>
                                         </label>
                                         <div class="cb-payment-info">
-                                            Pay with cash when the products are delivered to your home.
+                                            Pay with cash when your order arrives at your doorstep.
                                         </div>
                                     </div>
 
                                     <div class="cb-payment-item" id="pay-online-item">
                                         <label class="cb-payment-label">
                                             <input type="radio" name="payment_method" value="online" class="payment-radio">
-                                            <span>{{ __('Online Payment (bKash/Card)') }}</span>
+                                            <span class="d-flex align-items-center gap-2">
+                                                <i class="fas fa-credit-card text-primary"></i>
+                                                {{ __('Online Payment') }}
+                                            </span>
                                         </label>
                                         <div class="cb-payment-info">
-                                            Securely pay via bKash, Rocket, Cards or Mobile Banking.
+                                            Pay securely via bKash, Rocket, Cards or other mobile banking methods.
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="cb-form-group mt-30">
+                                <div class="cb-form-group" style="margin-top: 24px;">
                                     <label class="cb-label">{{ __('Order Note (Optional)') }}</label>
-                                    <textarea name="order_note" class="cb-textarea" rows="2" placeholder="Notes for delivery..."></textarea>
+                                    <textarea name="order_note" class="cb-textarea" rows="2" placeholder="Instructions for delivery..."></textarea>
                                 </div>
 
-                                <div style="margin-top: 25px;">
-                                    <label style="display: flex; gap: 10px; cursor: pointer; font-size: 13px; color: #555;">
-                                        <input type="checkbox" id="agree-terms" required style="accent-color: #e8362a; width: 16px; height: 16px;">
-                                        <span>I agree to the <a href="{{ route('terms') }}" class="text-red">Terms & Conditions</a> and <a href="{{ route('privacy-policy') }}" class="text-red">Privacy Policy</a>.</span>
+                                <div class="terms-box">
+                                    <label class="terms-label">
+                                        <input type="checkbox" id="agree-terms" required>
+                                        <span>I have read and agree to the website <a href="{{ route('terms') }}">terms and conditions</a> and <a href="{{ route('privacy-policy') }}">privacy policy</a>.</span>
                                     </label>
                                 </div>
 
-                                <button type="submit" class="cb-btn-main" id="place-order-btn" disabled>
-                                    {{ __('Place Order Now') }}
+                                <button type="submit" class="cb-btn-primary" id="place-order-btn" disabled>
+                                    <i class="fas fa-lock me-2"></i> {{ __('Place Order Now') }}
                                 </button>
                             </form>
                         </div>
@@ -428,16 +466,22 @@
                 </div>
 
                 <!-- Right Side: Order Summary -->
-                <div class="cb-col-5">
-                    <div class="sticky-side">
-                        <div class="cb-card">
-                            <div class="cb-card-header">
-                                <i class="fas fa-shopping-basket"></i> {{ __('Your Order') }}
+                <div class="cb-col-right">
+                    <div class="sticky-sidebar">
+                        <div class="cb-card" style="border-top: 4px solid var(--cb-primary);">
+                            <div class="cb-card-header" style="background: #fcfcfc;">
+                                <i class="fas fa-shopping-bag"></i>
+                                <h2>{{ __('Order Summary') }}</h2>
                             </div>
                             <div class="cb-card-body" style="padding: 0;">
-                                <!-- Reusing your existing cart items include -->
                                 @include('frontend.home.includes.checkout-cart-items', ['cartItems' => $cartItems])
                             </div>
+                        </div>
+                        
+                        <div style="padding: 0 10px; text-align: center;">
+                            <p style="font-size: 13px; color: var(--cb-text-muted);">
+                                <i class="fas fa-shield-alt text-success"></i> Secure Checkout Guaranteed
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -461,10 +505,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 1. Payment Interaction
     paymentItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function(e) {
+            // Prevent double trigger if clicking the radio directly
+            if (e.target.type !== 'radio') {
+                const radio = this.querySelector('input');
+                radio.checked = true;
+            }
+            
             paymentItems.forEach(i => i.classList.remove('active'));
             this.classList.add('active');
-            this.querySelector('input').checked = true;
             checkFormValidity();
         });
     });
@@ -515,11 +564,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     list.innerHTML = '';
                     data.forEach((m, i) => {
                         const div = document.createElement('div');
-                        div.style.marginBottom = '10px';
+                        div.className = 'shipping-method-item';
                         div.innerHTML = `
-                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                                <input type="radio" name="ship_opt" value="${m.price}" ${i === 0 ? 'checked' : ''} style="accent-color: #e8362a;">
-                                <span style="font-size: 14px;">${m.name}: <strong>${m.price}৳</strong></span>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; width: 100%; margin: 0;">
+                                <input type="radio" name="ship_opt" value="${m.price}" ${i === 0 ? 'checked' : ''} style="accent-color: var(--cb-primary);">
+                                <div style="flex-grow: 1;">
+                                    <div style="font-weight: 600; font-size: 14px;">${m.name}</div>
+                                </div>
+                                <div style="font-weight: 700; color: var(--cb-primary);">Tk. ${m.price}</div>
                             </label>
                         `;
                         list.appendChild(div);
@@ -529,11 +581,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         r.addEventListener('change', calcTotal);
                     });
                     calcTotal();
+                } else {
+                    shipContainer.style.display = 'none';
+                    document.getElementById('shipping_val').value = 0;
+                    calcTotal();
                 }
             });
     }
 
     function calcTotal() {
+        // Elements from the included partial
         const subtotalEl = document.querySelector('.subtotal');
         const discountEl = document.querySelector('.discount');
         const shipDisplay = document.getElementById('shipping-price');
@@ -568,6 +625,10 @@ document.addEventListener('DOMContentLoaded', function() {
             'temp_thana': document.getElementById('thana').value
         };
 
+        // Remove old hidden mapping inputs if they exist (to avoid duplicates on multi-submit)
+        const oldInputs = orderForm.querySelectorAll('input[name^="temp_"]');
+        oldInputs.forEach(input => input.remove());
+
         for (const [name, val] of Object.entries(mapping)) {
             const input = document.createElement('input');
             input.type = 'hidden';
@@ -577,13 +638,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         Swal.fire({
-            title: 'Confirm Order',
-            text: "Are you sure you want to proceed with this order?",
-            icon: 'info',
+            title: 'Confirm Your Order',
+            text: "Would you like to proceed with the purchase?",
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#e8362a',
-            cancelButtonColor: '#212a2f',
-            confirmButtonText: 'Yes, Place Order'
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Yes, Place Order',
+            cancelButtonText: 'Review Order'
         }).then((result) => {
             if (result.isConfirmed) {
                 orderForm.submit();

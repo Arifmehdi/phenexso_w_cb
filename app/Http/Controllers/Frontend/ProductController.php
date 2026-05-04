@@ -187,6 +187,6 @@ class ProductController extends Controller
         $districts = District::all();
 
         return view('website.product.checkout', compact( 'cartItems', 'shippingMethods','districts', 'location'));
-        return view('frontend.home.new_checkout', compact( 'cartItems', 'shippingMethods','districts', 'location'));
+        // return view('frontend.home.new_checkout', compact( 'cartItems', 'shippingMethods','districts', 'location'));
     }
 }
