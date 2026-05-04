@@ -172,23 +172,59 @@
                         display: inline-block;
                     }
                     .level2-wrapper {
-                        margin-bottom: 18px;
+                        margin-bottom: 15px;
                         transition: all 0.3s ease;
+                        position: relative;
                     }
                     .level2-header {
-                        margin-bottom: 8px !important;
+                        margin-bottom: 5px !important;
                         border-bottom: 1px solid #f0f0f0;
                         padding-bottom: 6px;
+                    }
+                    .level2-link {
+                        display: flex;
+                        align-items: center;
+                        font-weight: 600 !important;
+                        color: #333 !important;
+                        font-size: 14px;
+                        transition: color 0.2s;
+                    }
+                    .level2-link:hover {
+                        color: var(--secondary-color) !important;
                     }
                     .level3-list {
                         display: none; /* Hide by default */
                         list-style: none;
-                        padding-left: 38px;
-                        margin-top: 5px;
+                        padding: 12px;
+                        margin-top: 8px;
+                        background: #f9f9f9;
+                        border-radius: 8px;
+                        border: 1px solid #eee;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 10px;
                         animation: fadeIn 0.3s ease forwards;
                     }
                     .level2-wrapper:hover .level3-list {
-                        display: block; /* Show on hover */
+                        display: grid; /* Show as grid on hover */
+                    }
+                    .level3-link {
+                        display: flex !important;
+                        align-items: center;
+                        gap: 8px;
+                        padding: 6px 8px;
+                        background: #fff;
+                        border-radius: 6px;
+                        border: 1px solid transparent;
+                        transition: all 0.2s ease;
+                        font-size: 13px;
+                        color: #555;
+                        text-decoration: none;
+                    }
+                    .level3-link:hover {
+                        border-color: #ddd;
+                        color: var(--secondary-color) !important;
+                        transform: translateY(-1px);
+                        box-shadow: 0 3px 8px rgba(0,0,0,0.05);
                     }
                     @keyframes fadeIn {
                         from { opacity: 0; transform: translateY(-5px); }
