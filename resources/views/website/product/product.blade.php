@@ -446,11 +446,11 @@
                     @php
                         $subIds = \App\Models\ProductCategory::where('parent_id', $catBtn->id)
                             ->where('active', 1)->pluck('id')->toArray();
-                        $catBtnProductsCount = \App\Models\Product::where('active', 1)
+                        /* $catBtnProductsCount = \App\Models\Product::where('active', 1)
                             ->whereHas('categories', function($q) use ($catBtn, $subIds) {
                                 $q->where('product_categories.id', $catBtn->id)
                                   ->orWhereIn('product_categories.id', $subIds);
-                            })->count();
+                            })->count(); */
                     @endphp
                     <a href="{{ route('productCategory', $catBtn->slug) }}"
                        class="btn rounded-pill d-flex align-items-center gap-2 text-nowrap {{ isset($slug) && $slug == $catBtn->slug ? 'btn-danger' : 'btn-outline-secondary' }}"
@@ -459,7 +459,7 @@
                              alt="{{ $catBtn->name_en }}" class="rounded-circle" width="24" height="24" loading="lazy">
                         <span>
                             {{ $locale === 'bn' ? $catBtn->name_bn : $catBtn->name_en }}
-                            <small class="ms-1">({{ $catBtnProductsCount }})</small>
+                            {{--<small class="ms-1">({{ $catBtnProductsCount }})</small>--}}
                         </span>
                     </a>
                 @endforeach
@@ -552,12 +552,14 @@
                                 @endforeach
                             </p>
                             <p class="price">
-                                @if($product->discount > 0)
+                                {{--@if($product->discount > 0)
                                     <span class="original">{{ number_format($product->price, 2) }} ৳</span>
                                     <span class="sale-price">{{ number_format($product->final_price, 2) }} ৳</span>
                                 @else
                                     {{ number_format($product->final_price, 2) }} ৳
-                                @endif
+                                @endif--}}
+
+                                <span class="sale-price">{{ number_format($product->price, 2) }} ৳</span>
                             </p>
                             <div class="mt-auto productCartItem" data-product="{{ $product->id }}">
                                 @include('frontend.home.includes.productCartItem')

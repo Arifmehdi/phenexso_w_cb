@@ -196,7 +196,7 @@
                     </h3>
                     <!-- <p class="size">32 x 62.5 cm</p> -->
                     {{-- <p class="price">৳{{ $product->final_price }} / m²</p> --}}
-                    <p class="price">৳{{ $product->final_price }} </p>
+                    <p class="price">৳{{ $product->price }} </p>
                 </div>
             </div>
             </a>

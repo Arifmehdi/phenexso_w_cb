@@ -489,16 +489,16 @@
                             $subcategoryIds = \App\Models\ProductCategory::where('parent_id', $cat->id)
                                 ->where('active', 1)->pluck('id')->toArray();
                             
-                            $categoryProductsCount = \App\Models\Product::where('active', 1)
+                            /* $categoryProductsCount = \App\Models\Product::where('active', 1)
                                 ->whereHas('categories', function($q) use ($cat, $subcategoryIds) {
                                     $q->where('product_categories.id', $cat->id)
                                       ->orWhereIn('product_categories.id', $subcategoryIds);
-                                })->count();
+                                })->count(); */
                         @endphp
                         <li>
                             <a href="{{ route('productCategory', $cat->slug) }}" class="{{ isset($slug) && $slug == $cat->slug ? 'active' : '' }}">
                                 {{ $locale === 'bn' ? $cat->name_bn : $cat->name_en }} 
-                                <span class="count">{{ $categoryProductsCount }}</span>
+                                {{--<span class="count">{{ $categoryProductsCount }}</span>--}}
                             </a>
                         </li>
                         @endforeach
@@ -562,12 +562,13 @@
                                 @endforeach
                             </p>
                             <p class="price">
-                                @if($product->discount > 0)
+                                {{--@if($product->discount > 0)
                                     <span class="original">{{ number_format($product->price, 2) }} ৳</span>
                                     <span class="sale-price">{{ number_format($product->final_price, 2) }} ৳</span>
                                 @else
                                     {{ number_format($product->final_price, 2) }} ৳
-                                @endif
+                                    @endif--}}
+                                    <span class="sale-price">{{ number_format($product->price, 2) }} ৳</span>
                             </p>
                             <div class="mt-auto productCartItem" data-product="{{ $product->id }}">
                                 @include('frontend.home.includes.productCartItem')

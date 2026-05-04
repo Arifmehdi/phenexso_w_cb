@@ -50,7 +50,7 @@ class FrontendController extends Controller
     {
         $data['products'] = Product::where('active', true)->orderByDesc('id')
             ->limit(4)
-            ->select('id','slug','active','featured_image','name_en','name_bn', 'price','final_price')->get();
+            ->select('id','slug','active','featured_image','name_en','name_bn', 'price','final_price', 'price')->get();
 
         $data['popular_products'] = Product::where('active', true)->orderByDesc('id')
             ->skip(4)
@@ -1039,7 +1039,7 @@ class FrontendController extends Controller
 
             // Mail::to('admin@93shasthoseba.com')->send(new OrderConfirmationEmail($order));
 
-            return redirect()->route('user.dashboard')->with('success', 'Order placed successfully!');
+            return redirect()->route('order.payment.confirmation', $order)->with('success', 'Order placed successfully!');
         } else {
             $request->validate([
                 'temp_name' => 'required|string|max:255',
@@ -1062,11 +1062,27 @@ class FrontendController extends Controller
 
             $this->storeOrderItems($order, $cartItems, null);
             Cart::where('session_id', session('session_id'))->delete();
-
             // Mail::to($location->email)->send(new OrderConfirmationEmail($order));
 
-            return redirect()->route('shop')->with('success', 'Order placed successfully!');
+            return redirect()->route('order.payment.confirmation', $order)->with('success', 'Order placed successfully!');
         }
+    }
+
+    public function paymentConfirmation(Order $order)
+    {
+        // Authorization: logged-in users can only view their own orders
+        if (Auth::check()) {
+            if ($order->user_id !== Auth::id()) {
+                abort(403, 'Unauthorized access to this order.');
+            }
+        } else {
+            // Guests can only view orders with no user_id
+            if ($order->user_id !== null) {
+                abort(403, 'Unauthorized access to this order.');
+            }
+        }
+
+        return view('website.order.payment_confirmation', compact('order'));
     }
 
 
@@ -1083,7 +1099,7 @@ class FrontendController extends Controller
     private function calculateSubtotal($cartItems)
     {
         return $cartItems->sum(function ($cart) {
-            return $cart->product->final_price * $cart->quantity;
+            return $cart->product->selling_price * $cart->quantity;
         });
     }
 

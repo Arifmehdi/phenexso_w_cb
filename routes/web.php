@@ -196,6 +196,7 @@ Route::post('agent/update-pwd',[FrontendController::class, 'updatePassword'])->n
 Route::post('agent/update-profile',[FrontendController::class, 'updateProfile'])->name('member.update_profile');
 
 Route::post('cod/order/store',[FrontendController::class, 'codOrderStore'])->name('codOrderStore');
+Route::get('order/payment-confirmation/{order}', [FrontendController::class, 'paymentConfirmation'])->name('order.payment.confirmation');
 Route::post('order/store', [SslCommerzPaymentController::class, 'orderStore']);
 
 

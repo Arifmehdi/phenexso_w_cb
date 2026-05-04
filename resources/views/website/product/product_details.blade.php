@@ -71,7 +71,7 @@
             <div class="col-lg-6">
                 <h1 class="h3 fw-bold mb-3">{{$product->name_en}}</h1>
 
-                @if($product->discount > 0.00)
+                {{--@if($product->discount > 0.00)
                     <span class="text-muted text-decoration-line-through me-2 w3-medium unitPriceBox" data-unit-price="{{ $product->price }}">
                         @if(isset($cart->quantity))
                             {{ number_format($cart->quantity * $product->price, 2) }} ৳
@@ -79,14 +79,15 @@
                             {{ number_format($product->price, 2) }} ৳
                         @endif
                     </span>
-                @endif
+                @endif--}}
 
                 <span class="fw-bold text-primary w3-medium finalPriceBox" data-unit-price="{{ $product->final_price }}">
-                    @if(isset($cart->quantity))
+                    {{--@if(isset($cart->quantity))
                         {{ number_format($cart->quantity * $product->final_price, 2) }} ৳
                     @else
                         {{ number_format($product->final_price, 2) }} ৳
-                    @endif
+                    @endif --}}
+                    {{ number_format($product->price, 2) }} ৳
                 </span>
 
                 <hr class="my-2">
@@ -188,13 +189,13 @@
 
                                 <!-- Price -->
                                 <div class="mb-1">
-                                    @if($product->discount > 0.00)
+                                    {{-- @if($product->discount > 0.00)
                                         <span class="text-muted text-decoration-line-through me-2 w3-small">
                                             {{ number_format($product->price, 2) }} ৳
                                         </span>
-                                    @endif
+                                    @endif --}}
                                     <span class="fw-bold text-primary w3-small">
-                                        {{ number_format($product->final_price, 2) }} ৳
+                                        {{ number_format($product->price, 2) }} ৳
                                     </span>
                                 </div>
 
