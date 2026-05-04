@@ -147,6 +147,20 @@
 
 
     }
+
+    /* Mobile overflow fixes */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+      }
+
+      * {
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+    }
   </style>
 
 

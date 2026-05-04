@@ -129,6 +129,18 @@
                         .header-social-icons a:nth-child(3) {
                             display: none;
                         }
+
+                        /* Prevent horizontal scroll and extra space on mobile */
+                        body {
+                            overflow-x: hidden;
+                            width: 100%;
+                            max-width: 100vw;
+                        }
+
+                        * {
+                            max-width: 100%;
+                            box-sizing: border-box;
+                        }
                     }
 
                     /* Category Images & 3-Layer Hover Effects */
