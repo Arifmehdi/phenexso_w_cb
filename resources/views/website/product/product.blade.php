@@ -406,7 +406,7 @@
 <main class="shop-page">
     <div class="container">
         <div class="shop-breadcrumb">
-            <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('test_home') }}">Home</a>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 18l6-6-6-6"/>
             </svg>
