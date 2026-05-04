@@ -204,8 +204,9 @@
                         gap: 10px;
                         animation: fadeIn 0.3s ease forwards;
                     }
-                    .level2-wrapper:hover .level3-list {
-                        display: grid; /* Show as grid on hover */
+                    .level2-wrapper:hover .level3-list,
+                    .level2-wrapper.open .level3-list {
+                        display: grid; /* Show as grid on hover or when open */
                     }
                     .level3-link {
                         display: flex !important;
@@ -225,6 +226,42 @@
                         color: var(--secondary-color) !important;
                         transform: translateY(-1px);
                         box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+                    }
+                    
+                    /* Mobile Toggle Arrows */
+                    .mobile-toggle-arrow {
+                        display: none;
+                        margin-left: auto;
+                        padding: 5px;
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .mobile-toggle-arrow {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .has-dropdown > a, .level2-link {
+                            display: flex !important;
+                            align-items: center;
+                            width: 100%;
+                        }
+                        .has-dropdown.open > a > .mobile-toggle-arrow,
+                        .level2-wrapper.open .level2-link > .mobile-toggle-arrow {
+                            transform: rotate(180deg);
+                        }
+                        
+                        .level2-wrapper {
+                            margin-bottom: 5px;
+                        }
+                        .level2-header {
+                            padding: 10px 0;
+                        }
+                        .level3-list {
+                            grid-template-columns: 1fr; /* Single column on mobile */
+                            margin-bottom: 15px;
+                        }
                     }
                     @keyframes fadeIn {
                         from { opacity: 0; transform: translateY(-5px); }
@@ -401,6 +438,11 @@
                                      class="nav-cat-img">
                             @endif
                             {{ $category->{'name_' . app()->getLocale()} }}
+                            <span class="mobile-toggle-arrow">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </span>
                         </a>
 
                         {{-- Mega Menu Container --}}
@@ -428,18 +470,24 @@
                                                                          class="menu-cat-img">
                                                                 @endif
                                                                 {{ $level2->{'name_' . app()->getLocale()} }}
+                                                                @php
+                                                                    $level3Categories = \App\Models\ProductCategory::where('parent_id', $level2->id)
+                                                                        ->where('active', 1)
+                                                                        ->orderBy('position', 'asc')
+                                                                        ->orderBy('name_' . app()->getLocale())
+                                                                        ->get();
+                                                                @endphp
+                                                                @if($level3Categories->count() > 0)
+                                                                    <span class="mobile-toggle-arrow">
+                                                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                                            <path d="m6 9 6 6 6-6"/>
+                                                                        </svg>
+                                                                    </span>
+                                                                @endif
                                                             </a>
                                                         </h4>
                                                         
                                                         {{-- Level 3 Subcategories (if exist) --}}
-                                                        @php
-                                                            $level3Categories = \App\Models\ProductCategory::where('parent_id', $level2->id)
-                                                                ->where('active', 1)
-                                                                ->orderBy('position', 'asc')
-                                                                ->orderBy('name_' . app()->getLocale())
-                                                                ->get();
-                                                        @endphp
-                                                        
                                                         @if($level3Categories->count() > 0)
                                                             <ul class="level3-list">
                                                                 @foreach($level3Categories as $level3)
@@ -549,6 +597,34 @@
         const dropdown = document.getElementById('accountDropdown');
         dropdown.classList.toggle('show');
     }
+
+    // Mobile Menu Click Handlers
+    document.addEventListener('DOMContentLoaded', function() {
+        // Level 1 Dropdown
+        document.querySelectorAll('.has-dropdown > a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = this.closest('.has-dropdown');
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+
+        // Level 2 Dropdown
+        document.querySelectorAll('.level2-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    const wrapper = this.closest('.level2-wrapper');
+                    const level3List = wrapper.querySelector('.level3-list');
+                    if (level3List) {
+                        e.preventDefault();
+                        wrapper.classList.toggle('open');
+                    }
+                }
+            });
+        });
+    });
 
     // Close dropdown when clicking outside
     window.addEventListener('click', function(e) {
